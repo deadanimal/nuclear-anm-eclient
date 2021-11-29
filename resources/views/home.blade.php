@@ -214,6 +214,32 @@
       </div>
     </div>
   </div>
+  <div class="row g-0">
+    <div class="col-lg-8 pe-lg-2">
+      <div class="card mb-3 mb-lg-0">
+        <div class="card-body">
+          <h5 class="fs-0 mb-3">New Year's Eve on the Waterfront</h5>
+          <p>Boston Harbor Now in partnership with the Friends of Christopher Columbus Park, the Wharf District Council and the City of Boston is proud to announce the New Year's Eve Midnight Harbor Fireworks! This beloved nearly 40-year old tradition is made possible by the generous support of local waterfront organizations and businesses and the support of the City of Boston and the Office of Mayor Marty Walsh.</p>
+          <p>Join us as we ring in the New Year with a dazzling display over Boston Harbor. Public viewing is free and available from the Harborwalk of these suggested viewing locations:</p>
+          <ul>
+            <li>Christopher Columbus Park, North End</li>
+            <li>Fan Pier, Seaport District</li>
+            <li>East Boston Harborwalk</li>
+          </ul>
+          <p>The show will begin promptly at midnight.</p>
+          <p>Register here for a reminder and updates about the harbor fireworks and other waterfront public programs as they become available. Be the first to be notified for popular waterfront New Year's Eve public activities.</p>
+          <h5 class="fs-0 mt-5 mb-2">Tags</h5><a class="badge border link-secondary me-1 text-decoration-none" href="#!">Things To Do In Brooklyn, NY</a><a class="badge border link-secondary me-1 text-decoration-none" href="#!">Party</a><a class="badge border link-secondary me-1 text-decoration-none" href="#!">Music</a>
+          <h5 class="fs-0 mt-5 mb-2">Share with friends</h5>
+          <div class="icon-group"><a class="icon-item text-facebook" href="#!"><span class="fab fa-facebook-f"></span></a><a class="icon-item text-twitter" href="#!"><span class="fab fa-twitter"></span></a><a class="icon-item text-google-plus" href="#!"><span class="fab fa-google-plus-g"></span></a><a class="icon-item text-linkedin" href="#!"><span class="fab fa-linkedin-in"></span></a><a class="icon-item text-700" href="#!"><span class="fab fa-medium-m"></span></a></div>
+          <div class="googlemap min-vh-50 rounded-3 mt-5" id="view-map" data-latlng="23.8383608,90.3680554" data-scrollwheel="false" data-icon="../../assets/img/icons/map-marker.png" data-zoom="17" data-theme="Default">
+            <div class="marker-content pb-3 light">
+              <h5>Eiffel Tower</h5>
+              <p>Gustave Eiffel's iconic, wrought-iron 1889 tower,<br /> with steps and elevators to observation decks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </main>
     <!-- ===============================================-->
     <!--    End of Main Content-->

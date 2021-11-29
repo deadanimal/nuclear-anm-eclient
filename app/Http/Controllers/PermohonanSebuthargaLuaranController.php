@@ -10,6 +10,20 @@ use Illuminate\Http\Request;
 
 class PermohonanSebuthargaLuaranController extends Controller
 {
+    // public function addToCart(Request $request)
+    // {
+    //     $sebutharga = [
+    //         'id' => $request->id,
+    //         'name' => $request->name,
+    //         'harga_perkhidmatan' => $request->harga_perkhidmatan,
+
+    //     ];
+    //     return view('permohonan_sebutharga_dalaman.cart', [$sebutharga]);
+        
+    //     //session()->flash('success', 'Product is Added to Cart Successfully !');
+
+    //     //return redirect()->route('permohonan_sebutharga_luaran.cart');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +56,7 @@ class PermohonanSebuthargaLuaranController extends Controller
 
     public function getJenisPerkhidmatan(Request $request){
         $myvariable1 = [];
-        $tajuks1 = spp_profil_harga_servis::where('idKatServis',$request->id)->get();
+        $tajuks1 = spp_profil_harga_servis::where('idPKhidmatServis',$request->id)->get();
         foreach($tajuks1 as $t1){
             $myvariable1['aos1'][] = $t1;
         }

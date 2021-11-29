@@ -4,9 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\spp_pusat_khidmat;
 use Illuminate\Http\Request;
+use App\Models\kod_kategori_servis;
 
 class SppPusatKhidmatController extends Controller
 {
+    public function getPusatPerkhidmatan(Request $request){
+        $myvariable = [];
+        $tajuks = spp_pusat_khidmat::where('idKatServis',$request->id)->get();
+        foreach($tajuks as $t){
+            $myvariable['aos'][] = $t;
+        }
+        echo json_encode($myvariable);
+        exit();
+    }
+
+
+    public function getKategoriServis(Request $request){
+        $myvariable1 = [];
+        $tajuks1 = kod_kategori_servis::where('idPKhidmat',$request->id)->get();
+        foreach($tajuks1 as $t1){
+            $myvariable1['aos1'][] = $t1;
+        }
+        echo json_encode($myvariable1);
+        exit();
+    }
     /**
      * Display a listing of the resource.
      *

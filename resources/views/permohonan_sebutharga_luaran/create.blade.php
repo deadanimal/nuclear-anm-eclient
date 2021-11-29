@@ -1,4 +1,4 @@
-@extends('base')
+@extends('bases')
 <style>
   table {
     font-family: arial, sans-serif;
@@ -17,9 +17,15 @@
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+  
   </style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
   
 @section('content')
 
@@ -141,26 +147,28 @@
       $(document).on('change','#pusat_perkhidmatan',function(){
         $("#jenis_perkhidmatan").empty();
         let selected = $(this).val();
+        alert(selected);
         $.ajax({
             method: "POST",
-            url: "{{ url('pusat_perkhidmatan') }}",
+            url: "{{ url('/pusat_perkhidmatan') }}",
             data: {
                 "_token": "{{ csrf_token() }}",
                 "id": selected,
             },
         }).done(function(response) {
             var data = jQuery.parseJSON(response);
+            //alert(data)
             $('#jenis_perkhidmatan').html('');
             $('#jenis_perkhidmatan').append('<option value="">Pilih...</option>');
             $.each(data.aos, function(index,value) {
-                $('#jenis_perkhidmatan').append('<option value="'+value.id+'" data-name="'+value.nama+'">'+value.namaE+value.nama+'</option>');
+                $('#jenis_perkhidmatan').append('<option value="'+value.id+'" data-name="'+value.nama+'">'+value.nama+'</option>');
             });
         });
       });
-            $(document).on('change','#jenis_perkhidmatan',function(){
+
+      $(document).on('change','#jenis_perkhidmatan',function(){
         $("#harga_perkhidmatan").empty();
         let selected = $(this).val();
-        alert(selected);
         $.ajax({
             method: "POST",
             url: "{{ url('jenis_perkhidmatan') }}",
@@ -174,7 +182,7 @@
             $('#harga_perkhidmatan').append('<td value=""></td>');
             $.each(data.aos1, function(index,value) {
                 $('#harga_perkhidmatan').append(
-                  '<tr><td value="'+value.id+'" data-name="'+value.nama+'">'+value.idPKhidmat+'</td></a><td value="'+value.id+'" data-name="'+value.nama+'">'+value.nama+'</td><td value="'+value.id+'" data-name="'+value.nama+'">'+value.hargaY+'</td><td value="'+value.id+'" data-name="'+value.nama+'">'+value.unitHarga+'</td></tr>'
+                  `<tr><td value="${value.id}"data-name="${value.nama}"><a href="/permohonan_sebutharga_luaran/${value.id}" >${value.idPKhidmat}</td><td value="${value.id}" data-name="${value.nama}">${value.nama}</td><td value="${value.id}" data-name="${value.nama}">${value.hargaY}</td><td value="${value.id}" data-name="${value.nama}">${value.unitHarga}</a></td></tr>`
                   );
             });
         });
