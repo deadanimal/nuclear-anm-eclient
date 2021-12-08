@@ -3,6 +3,11 @@
 <html lang="en-US" dir="ltr">
 
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"> 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,11 +88,13 @@
               document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
             }
           </script>
-          <div class="d-flex align-items-center">
+          {{-- <div class="d-flex align-items-center">
               <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('Header.png') }}" alt="" width="1300"  /><span class="font-sans-serif">falcon</span>
               </div>
             </a>
-          </div>
+          </div> --}}
+
+          
           {{-- <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
             <div class="navbar-vertical-content scrollbar">
               <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">

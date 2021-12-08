@@ -16,16 +16,16 @@ class CreateSppProfilHargaServisTable extends Migration
         Schema::create('spp_profil_harga_servis', function (Blueprint $table) {
             $table->id();
 
-            $table->string('idPKhidmat');
-            $table->string('idPKhidmatServis');
-            $table->string('idKatServis');
-            $table->string('nama');
-            $table->string('namaE');
-            $table->string('flagHarga');
-            $table->string('hargaY');
-            $table->string('hargaT');
-            $table->string('unitHarga');
-            $table->text('catatan');
+            $table->string('idPKhidmat')->nullable();
+            $table->string('idPKhidmatServis')->nullable();
+            $table->string('idKatServis')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('namaE')->nullable();
+            $table->string('flagHarga')->nullable();
+            $table->string('hargaY')->nullable();
+            $table->string('hargaT')->nullable();
+            $table->string('unitHarga')->nullable();
+            $table->text('catatan')->nullable();
             
             $table->timestamps();
         });

@@ -10,20 +10,6 @@ use Illuminate\Http\Request;
 
 class PermohonanSebuthargaLuaranController extends Controller
 {
-    // public function addToCart(Request $request)
-    // {
-    //     $sebutharga = [
-    //         'id' => $request->id,
-    //         'name' => $request->name,
-    //         'harga_perkhidmatan' => $request->harga_perkhidmatan,
-
-    //     ];
-    //     return view('permohonan_sebutharga_dalaman.cart', [$sebutharga]);
-        
-    //     //session()->flash('success', 'Product is Added to Cart Successfully !');
-
-    //     //return redirect()->route('permohonan_sebutharga_luaran.cart');
-    // }
     /**
      * Display a listing of the resource.
      *

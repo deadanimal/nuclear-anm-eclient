@@ -15,13 +15,13 @@ class CreateSppPusatServisKhidmatsTable extends Migration
     {
         Schema::create('spp_pusat_servis_khidmats', function (Blueprint $table) {
             $table->id();
-            $table->string('idPKhidmat');
-            $table->string('idKatServis');
-            $table->string('kod');
-            $table->string('nama');
-            $table->string('catatan');
-            $table->string('namaE');
-            $table->string('catatanE');
+            $table->string('idPKhidmat')->nullable();
+            $table->string('idKatServis')->nullable();
+            $table->string('kod')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('catatan')->nullable();
+            $table->string('namaE')->nullable();
+            $table->string('catatanE')->nullable();
             $table->timestamps();
         });
     }

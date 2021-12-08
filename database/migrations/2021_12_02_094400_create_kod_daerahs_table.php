@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeKandunganType extends Migration
+class CreateKodDaerahsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class ChangeKandunganType extends Migration
      */
     public function up()
     {
-        Schema::table('beritas', function (Blueprint $table) {
-
-            $table->text('kandungan')->nullable()->change();
+        Schema::create('kod_daerahs', function (Blueprint $table) {
+            $table->id();
+            $table->string('idNegeri')->nullable();
+            $table->string('kod')->nullable();
+            $table->string('nama')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class ChangeKandunganType extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('kod_daerahs');
     }
 }

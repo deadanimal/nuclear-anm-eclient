@@ -16,15 +16,15 @@ class CreatePermohonanSebuthargaLuaransTable extends Migration
     {
         Schema::create('permohonan_sebutharga_luarans', function (Blueprint $table) {
             $table->id();
-            $table->string('sebutharga_jenis_permohonan');
-            $table->string('name');
-            $table->string('no_pelanggan');
+            $table->string('sebutharga_jenis_permohonan')->nullable();
+            $table->string('name')->nullable();
+            $table->string('no_pelanggan')->nullable();
             $table->string('catatan')->nullable();
             $table->string('pusat_khidmat')->nullable();
-            $table->string('pusat_perkhidmatan');
-            $table->string('jenis_perkhidmatan');
+            $table->string('pusat_perkhidmatan')->nullable();
+            $table->string('jenis_perkhidmatan')->nullable();
             $table->string('harga_perkhidmatan')->nullable();
-            $table->string('jumlah_perkhidmatan');
+            $table->string('jumlah_perkhidmatan')->nullable();
             $table->string('tajuk')->nullable();
             $table->string('catatanT')->nullable();
             $table->string('fail_permohonan')->nullable();

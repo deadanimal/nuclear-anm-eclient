@@ -15,9 +15,9 @@ class CreateKodKategoriServisTable extends Migration
     {
         Schema::create('kod_kategori_servis', function (Blueprint $table) {
             $table->id();
-            $table->string('kod');
-            $table->string('nama');
-            $table->string('namaE');
+            $table->string('kod')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('namaE')->nullable();
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TestController;
+use App\Models\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,30 +37,51 @@ Route::get('/dashboard1', function () {
 });
 
 Route::resource('/berita','App\Http\Controllers\BeritaController'::class);
-Route::resource('/pesanan','App\Http\Controllers\PesananController'::class);
-Route::resource('/spp_pusat_khidmat_servis','App\Http\Controllers\SppPusatKhidmatServisController'::class);
+// Route::resource('/pesanan','App\Http\Controllers\PesananController'::class);
 
-Route::resource('/permohonan_sebutharga_luaran','App\Http\Controllers\PermohonanSebuthargaLuaranController'::class);
 Route::resource('/permohonan_sebutharga_dalaman','App\Http\Controllers\PermohonanSebuthargaDalamanController'::class);
 
 Route::get('/search','App\Http\Controllers\PesananController@search');
 
-Route::get('/cart', [PermohonanSebuthargaLuaranController::class, 'addToCart'])->name('permohonan_sebutharga_luaran.store');
 
-// Route::post('pusat_perkhidmatan1','App\Http\Controllers\PermohonanSebuthargaDalamanController@getPusatPerkhidmatan1');
-// Route::post('jenis_perkhidmatan1','App\Http\Controllers\PermohonanSebuthargaDalamanController@getJenisPerkhidmatan1');
+Route::resource('/spp_pusat_khidmat_servis','App\Http\Controllers\SppPusatKhidmatServisController'::class);
+Route::post('/spp_pusat_khidmat_servis/create','App\Http\Controllers\SppPusatKhidmatServisController@create'::class);
+Route::post('/spp_pusat_khidmat_servis_store','App\Http\Controllers\SppPusatKhidmatServisController@store'::class);
+Route::post('kategori_servis','App\Http\Controllers\SppPusatKhidmatServisController@getKodKategoriServis');
+Route::get('/spp_pusat_khidmat_servis/delete/{id}','App\Http\Controllers\SppPusatKhidmatServisController@destroy');
 
+Route::resource('/permohonan_sebutharga_luaran','App\Http\Controllers\PermohonanSebuthargaLuaranController'::class);
 Route::post('pusat_perkhidmatan','App\Http\Controllers\PermohonanSebuthargaLuaranController@getPusatPerkhidmatan');
 Route::post('jenis_perkhidmatan','App\Http\Controllers\PermohonanSebuthargaLuaranController@getJenisPerkhidmatan');
-
-// Route::post('pusat_perkhidmatan2','App\Http\Controllers\ServisPusatKhidmatController@getPusatPerkhidmatan');
-// Route::post('kod_servis','App\Http\Controllers\ServisPusatKhidmatController@getKod');
-
 Route::post('pusat_perkhidmatan_servis','App\Http\Controllers\SppPusatKhidmatServisController@getPusatPerkhidmatanServis');
-Route::post('kategori_servis','App\Http\Controllers\SppPusatKhidmatServisController@getKodKategoriServis');
-Route::delete('delete','App\Http\Controllers\SppPusatKhidmatServisController@destroy');
 
-// Route::post('kod_servis_perkhidmatan','App\Http\Controllers\SppPusatKhidmatServisController@getKodServisPerkhidmatan');
+Route::resource('/spp_profil_harga_servis','App\Http\Controllers\SppProfilHargaServisController'::class);
+Route::post('/spp_profil_harga_servis/create','App\Http\Controllers\SppProfilHargaServisController@create'::class);
+Route::post('/spp_profil_harga_servis_store','App\Http\Controllers\SppProfilHargaServisController@store'::class);
+
+Route::resource('/spp_profil_syarikat','App\Http\Controllers\SppProfilSyarikatController'::class);
+Route::post('daerah','App\Http\Controllers\SppProfilSyarikatController@getDaerah');
+Route::post('kod_syarikat','App\Http\Controllers\SppProfilSyarikatController@getKodKatSyarikat');
+Route::get('syarikat_carian','App\Http\Controllers\SppProfilSyarikatController@getSyarikat');
+
+Route::resource('/spp_pusat_khidmat','App\Http\Controllers\SppPusatKhidmatController'::class);
+// Route::get('syarikat_carian','App\Http\Controllers\SppProfilSyarikatController@getSyarikat');
+// Route::get('/spp_pusat_khidmat','App\Http\Controllers\SppPusatKhidmatController@index');
+
+Route::resource('/kod_bank','App\Http\Controllers\KodBankController'::class);
+
+
+Route::resource('/kod_status_syarikat','App\Http\Controllers\KodStatusSyarikatController'::class);
+
+
+Route::resource('/kod_bayaran','App\Http\Controllers\KodBayaranController'::class);
+
+Route::resource('/kod_negeri','App\Http\Controllers\KodNegeriController'::class);
+
+Route::resource('/kod_daerah','App\Http\Controllers\KodDaerahController'::class);
+
+
+Route::post('/idNegSel','App\Http\Controllers\KodDaerahController@getNegeri');
 
 
 

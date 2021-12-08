@@ -43,8 +43,6 @@ class SppPusatKhidmatServisController extends Controller
         $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::all();
         $kod_kategori_servis = kod_kategori_servis::all();
 
-
-
         return view('spp_pusat_khidmat_servis.index',[
             'spp_pusat_khidmat_servis'=>$spp_pusat_khidmat,
             'spp_pusat_khidmat_servis2'=>$spp_pusat_khidmat_servis,
@@ -58,9 +56,23 @@ class SppPusatKhidmatServisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('spp_pusat_khidmat_servis.create');
+    public function create(Request $request)
+    {        
+        $spp_pusat_khidmat = spp_pusat_khidmat::all();
+        $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::all();
+        $kod_kategori_servis = kod_kategori_servis::all();
+        $pusat_perkhidmatan12 = $request->pusat_perkhidmatan12;
+        $kategori_servis1 = $request->kategori_servis1 ;
+
+
+        return view('spp_pusat_khidmat_servis.create',[
+            'spp_pusat_khidmat_servis'=>$spp_pusat_khidmat,
+            'spp_pusat_khidmat_servis2'=>$spp_pusat_khidmat_servis,
+            'spp_pusat_khidmat_servis3'=>$kod_kategori_servis,
+            'spp_pusat_khidmat_servis4'=>$pusat_perkhidmatan12,
+            'spp_pusat_khidmat_servis5'=>$kategori_servis1,
+
+        ]);
     }
 
     /**
@@ -102,10 +114,17 @@ class SppPusatKhidmatServisController extends Controller
      * @param  \App\Models\spp_pusat_khidmat_servis  $spp_pusat_khidmat_servis
      * @return \Illuminate\Http\Response
      */
-    public function edit(spp_pusat_khidmat_servis $spp_pusat_khidmat_servis)
+    public function edit( $spp_pusat_khidmat_servis)
     {
-        return view('spp_pusat_khidmat_servis',[
-            'spp_pusat_khidmat_servis'=>$spp_pusat_khidmat_servis
+        $spp_pusat_khidmat_servis1 = spp_pusat_khidmat::all();
+        $spp_pusat_khidmat_servis2 = kod_kategori_servis::all();
+
+        $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::where('id', $spp_pusat_khidmat_servis)->first();
+
+        return view('spp_pusat_khidmat_servis.edit',[
+            'spp_pusat_khidmat_servis'=>$spp_pusat_khidmat_servis,
+            'spp_pusat_khidmat_servis1'=>$spp_pusat_khidmat_servis1,
+            'spp_pusat_khidmat_servis2'=>$spp_pusat_khidmat_servis2
         ]);
     }
 
@@ -120,7 +139,6 @@ class SppPusatKhidmatServisController extends Controller
     {
         $spp_pusat_khidmat_servis->idPKhidmat = $request->idPKhidmat;
         $spp_pusat_khidmat_servis->idKatServis = $request->idKatServis;
-        $spp_pusat_khidmat_servis->kod = $request->kod;
         $spp_pusat_khidmat_servis->nama = $request->nama;
         $spp_pusat_khidmat_servis->catatan = $request->catatan;
         $spp_pusat_khidmat_servis->namaE = $request->namaE;
@@ -137,10 +155,10 @@ class SppPusatKhidmatServisController extends Controller
      * @param  \App\Models\spp_pusat_khidmat_servis  $spp_pusat_khidmat_servis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(spp_pusat_khidmat_servis $spp_pusat_khidmat_servis)
+    public function destroy($id)
     {
-        spp_pusat_khidmat_servis::where('id',$spp_pusat_khidmat_servis)->delete();
-        return redirect()->route('/spp_pusat_khidmat_servis.index')
+        spp_pusat_khidmat_servis::where('id',$id)->delete();
+        return redirect('/spp_pusat_khidmat_servis')
         ->with('success', 'post deleted successfully');
     }
 }
