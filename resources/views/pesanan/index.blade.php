@@ -1,53 +1,77 @@
-@extends('base')
-<style>
-  table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-  </style>
+@extends('layouts.farhanmenu')
+
 @section('content')
 
-<div class="row g-0">
-  <div class="col-xxl-6 px-xxl-2">
-    <div class="card h-100">
-      <div class="card-header bg-light py-2">
-        <div class="row flex-between-center">
-          <div class="col-auto">
-            <h6 class="mb-0">Permohonan Sebutharga</h6>
-          </div>
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Senarai Pesanan</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="form_search_pesanan" method="POST" action="carian_pesanan">
+                                <div class="form-group row">
+                                    <label for="pusat_khidmat">Pusat Khidmat</label>
+                                    <select name="pusat_khidmat" id="pusat_khidmat">
+                                        <option value="">Pilih...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="no_sebutharga">No Serbutharga</label>
+                                    <input type="text" name="no_sebutharga" id="no_sebutharga">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="no_pesanan">No Pesanan</label>
+                                    <input type="text" name="no_pesanan" id="no_pesanan">
+                                </div>
+                                <div class="form-group row">
+                                    <button type="button">Cari</button>
+                                </div>
+                            </form>
+                            
+                            <table id="table_pesanan">
+                                <thead>
+                                    <tr>
+                                        <th>BIL</th>
+                                        <th>NAMA PELANGGAN</th>
+                                        <th>NO PESANAN</th>
+                                        <th>STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    if(!empty($pesanan)){
+                                        $counter = 1;
+                                        foreach($pesanan as $p){
+                                            if(is_null($p->profilSyarikat)){ //temp condition
+                                                continue;
+                                            }
+                                            ?>
+                                            <tr> 
+                                                <td>{{ $counter }}</td>
+                                                <td>{{ (!is_null($p->profilSyarikat) ? $p->profilSyarikat->nama:"-"); }}</td>
+                                                <td><a href="#">{{ $p->noOrder }}</a></td>
+                                                <td>{{ $p->idStatusOrder }}</td>
+                                            </tr>
+                                            <?php
+                                            $counter++;
+                                        }
+                                    }else{
+                                        ?><tr><td colspan="5">xde record</td></tr><?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="card-body h-100">
-        <div class="echart-bar-top-products h-100" data-echart-responsive="true">
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>permohonan_sebutharga_luaran</th>
-              <th>Update</th>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>permohonan_sebutdarga_luaran</td>
-              <td>Update</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
+</div>
 
-
-<h2></h2>
-
-@endsection
+@stop

@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/web3', function () {
+    return view('home2');
 });
 Route::get('/base', function () {
     return view('base');
@@ -34,12 +34,12 @@ Route::get('/dashboard1', function () {
     return view('dashboard1');
 });
 
-Route::resource('/berita','App\Http\Controllers\BeritaController'::class);
-Route::resource('/pesanan','App\Http\Controllers\PesananController'::class);
-Route::resource('/spp_pusat_khidmat_servis','App\Http\Controllers\SppPusatKhidmatServisController'::class);
+Route::resource('/berita','App\Http\Controllers\BeritaController');
+Route::resource('/pesanan','App\Http\Controllers\PesananController');
+Route::resource('/spp_pusat_khidmat_servis','App\Http\Controllers\SppPusatKhidmatServisController');
 
-Route::resource('/permohonan_sebutharga_luaran','App\Http\Controllers\PermohonanSebuthargaLuaranController'::class);
-Route::resource('/permohonan_sebutharga_dalaman','App\Http\Controllers\PermohonanSebuthargaDalamanController'::class);
+Route::resource('/permohonan_sebutharga_luaran','App\Http\Controllers\PermohonanSebuthargaLuaranController');
+Route::resource('/permohonan_sebutharga_dalaman','App\Http\Controllers\PermohonanSebuthargaDalamanController');
 
 Route::get('/search','App\Http\Controllers\PesananController@search');
 
@@ -60,6 +60,16 @@ Route::delete('delete','App\Http\Controllers\SppPusatKhidmatServisController@des
 
 // Route::post('kod_servis_perkhidmatan','App\Http\Controllers\SppPusatKhidmatServisController@getKodServisPerkhidmatan');
 
+
+
+
+
+
+Route::get('/senarai_pesanan', 'App\Http\Controllers\PesananController@index');
+Route::get('/senarai_pesanan_lulus', 'App\Http\Controllers\PesananController@index_lulus');
+Route::get('/jana_pesanan', 'App\Http\Controllers\PesananController@jana_pesanan');
+Route::get('/cari_sebutharga', 'App\Http\Controllers\PesananController@cari_sebutharga');
+Route::get('/cetakSebutHarga/{id}', 'App\Http\Controllers\PesananController@cetakSebutHarga');
 
 
 

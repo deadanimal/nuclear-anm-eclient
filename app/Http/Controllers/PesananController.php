@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pesanan;
+use App\Models\Pesanan;
+use App\Models\SppQuotation;
 use Illuminate\Http\Request;
-use App\Models\spp_profil_syarikat;
+use App\Models\SppProfilSyarikat;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
+use DateTime;
+use Redirect;
+use DB;
+use Illuminate\Support\Facades\Http;
 
 class PesananController extends Controller
 {
@@ -22,12 +30,36 @@ class PesananController extends Controller
     }
 
 
-     public function index()
+    public function index()
     {
-        $pesanan = Pesanan::all();
-        return view('pesanan.index',[
-            '$pesanan'=>$pesanan,
-        ]);
+        $pesanan = Pesanan::with('profilSyarikat')->offset(0)->limit(500)->get();
+        return view('pesanan.index',['pesanan'=>$pesanan]);
+    }
+    
+    public function index_lulus()
+    {
+        $pesanan = Pesanan::with('profilSyarikat')->offset(0)->limit(500)->get();
+        return view('pesanan.index_lulus',['pesanan'=>$pesanan]);
+    }
+    
+    public function jana_pesanan(){
+        $pesanan = [];
+        return view('pesanan.jana_pesanan',['pesanan'=>$pesanan]);
+    }
+    
+    public function cari_sebutharga(Request $request){
+        $found = 0;
+        $sebutharga = SppQuotation::where('noQuo','like','%'.$request->no_sebutharga.'%')->get();
+        if(!is_null($sebutharga)){
+            $found = 1;
+        }
+        echo json_encode(['found'=>$found,'sebutharga'=>$sebutharga]);
+    }
+    
+    public function cetakSebutHarga($id){
+        $sebutharga = SppQuotation::with('quotationPelanggan.pelanggan','quotationKumpulan','quotationDetail','quotationDetail.profilHargaServis')->where('id',$id)->get()->first();
+//        dd($sebutharga->quotationDetail);
+        return view('pesanan.cetak_sebutHarga',['sebutharga'=>$sebutharga]);
     }
 
     /**
@@ -37,9 +69,7 @@ class PesananController extends Controller
      */
     public function create()
     {
-                $spp_profil_syarikat = spp_profil_syarikat::all();
-
-
+        $spp_profil_syarikat = spp_profil_syarikat::all();
 
         return view('pesanan.create',[
             'pesanan'=>$spp_profil_syarikat
