@@ -80,6 +80,8 @@ class KodKategoriSyarikatController extends Controller
      */
     public function destroy(kod_kategori_syarikat $kod_kategori_syarikat)
     {
-        //
+        $kod_kategori_syarikat->delete();
+        return redirect('/kod_kategori_syarikat')
+        ->with('success', 'deleted successfully');
     }
 }

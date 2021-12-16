@@ -19,14 +19,12 @@
                 @endforeach
               </select>
               <br>
-              <label for="kategori_servis">Jenis Perkhimatan:</label>
+              <label for="kategori_servis">Kategori Perkhimatan:</label>
               <select name="kategori_servis" id="kategori_servis"></select>
               <br>
-              {{-- <button type="button" id="new_spp">Add spp_pusat_khidmat_servis</button> --}}
 
-
-              <input class="form-control" value="pusat_perkhidmatan"  type="text" id="idPKhidmat" name="idPKhidmat" >
-              <input class="form-control" value="kategori_servis"  type="text" id="idKatServis" name="idKatServis" >
+              <input hidden class="form-control" value="pusat_perkhidmatan"  type="text" id="idPKhidmat" name="idPKhidmat" >
+              <input hidden class="form-control" value="kategori_servis"  type="text" id="idKatServis" name="idKatServis" >
 
               <label style=" padding-right: 20px" for="nama">JENIS PERKHIDMATAN (BM) :</label>
               <input class="form-control" value=""  type="text" id="nama" name="nama" >

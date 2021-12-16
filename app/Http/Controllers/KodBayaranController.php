@@ -67,10 +67,11 @@ class KodBayaranController extends Controller
      */
     public function edit(kod_bayaran $kod_bayaran)
     {
-        $kod_bayaran = kod_bayaran::all();
+        $kod_bayaran1 = kod_bayaran::all();
 
         return view('kod_bayaran.edit',[
             'kod_bayaran'=>$kod_bayaran,
+            'kod_bayaran1'=>$kod_bayaran1,
         ]);
     }
 
@@ -96,13 +97,11 @@ class KodBayaranController extends Controller
      * @param  \App\Models\kod_bayaran  $kod_bayaran
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kod_bayaran $kod_bayaran,$id)
+    public function destroy(kod_bayaran $kod_bayaran)
     {
-        $kod_bayaran = kod_bayaran::where('id', $kod_bayaran)->first();
-
-        kod_bayaran::where('id',$id)->delete();
+        $kod_bayaran->delete();
         return redirect('/kod_bayaran')
-        ->with('success', 'post deleted successfully');
+        ->with('success', 'deleted successfully');
         //
     }
 }

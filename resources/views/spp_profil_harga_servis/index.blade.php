@@ -29,13 +29,17 @@ tr:nth-child(even) {
 <h2>Profil Harga</h2>
 
 <br>
-<form action="/spp_profil_harga_servis/create" method="POST" id="new_profil_harga_servis">
-  @csrf
+{{-- <form action="/spp_profil_harga_servis/create" method="POST" id="new_profil_harga_servis">
   <input type="text" name="pusat_perkhidmatan12" id="pusat_perkhidmatan12" >
   <input type="text" name="jenis_perkhidmatan1" id="jenis_perkhidmatan1">
-
 <button type="button" id="new_spp">Tambah Profil Harga</button>
-</form>
+</form> --}}
+
+
+
+
+<a href="/spp_profil_harga_servis/create">Tambah Profil Harga Servis</a>
+<br>
 <br>
 
 <label for="pusat_perkhidmatan1">Pusat Perkhimatan:</label>

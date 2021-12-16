@@ -52,7 +52,7 @@ tr:nth-child(even) {
 </select>
 <br>
 <br>
-<label for="kategori_servis">Jenis Perkhimatan:</label>
+<label for="kategori_servis">Kategori Perkhimatan:</label>
 <select name="kategori_servis" id="kategori_servis"></select>
 <br>
 <br>
@@ -116,7 +116,11 @@ tr:nth-child(even) {
               $('#pusat_perkhidmatan_servis').append(
                 `<tr><td value="${value.id}">${counter}</td><td >${value.nama}</td><td >${value.catatan}</td>
                 <td> <a href="/spp_pusat_khidmat_servis/${value.id}/edit">Kemaskini</a><br>
-                <a href="/spp_pusat_khidmat_servis/delete/${value.id}">Delete</a></td>
+                <form action="/spp_pusat_khidmat_servis/${value.id}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">BUANG</button>
+                </form></td>
                 </tr>`
                 );
                 counter++;

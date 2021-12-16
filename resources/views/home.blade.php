@@ -118,8 +118,9 @@
 
             </div>
             <ul class="align-items-center navbar-nav flex-column box" id="navbarVerticalNav">
-              <img src="{{ asset('/home.png') }}">
               <a class="nav-link active" href="index.html" style="center-align">
+              <img src="{{ asset('/home.png') }}">
+
                   UTAMA
               </a>
               
@@ -127,7 +128,7 @@
           <hr class="solidline">
           <ul class="align-items-center navbar-nav flex-column box" id="navbarVerticalNav">
             <img src="{{ asset('/menu.png') }}">
-              <a class="nav-link active" href="index.html" style="center-align;">
+              <a class="nav-link active" href="/dashboard" style="center-align;">
                   MENU
               </a>
               
@@ -148,6 +149,16 @@
               </a>
           </ul>
           <hr class="solidline">
+          <li class="">
+            <ul><a href="/spp_profil_syarikat">spp_profil_syarikat</a></ul>
+            <ul><a href="/spp_profil_harga_servis">spp_profil_harga_servis</a></ul>
+            <ul><a href="/spp_pusat_khidmat">spp_pusat_khidmat</a></ul>
+            <ul><a href="/spp_pusat_khidmat_servis">spp_pusat_khidmat_servis</a></ul>
+            <ul><a href="/kod_bank">kod_bank</a></ul>
+            <ul><a href="/kod_bayaran">kod_bayaran</a></ul>
+            <ul><a href="/kod_negeri">kod_negeri</a></ul>
+            <ul><a href="/kod_daerah">kod_daerah</a></ul>
+          </li>
         </div>
       </div>
     </nav>

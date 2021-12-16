@@ -117,14 +117,14 @@ class SppPusatKhidmatServisController extends Controller
     public function edit( $spp_pusat_khidmat_servis)
     {
         $spp_pusat_khidmat_servis1 = spp_pusat_khidmat::all();
-        $spp_pusat_khidmat_servis2 = kod_kategori_servis::all();
+        // $spp_pusat_khidmat_servis2 = kod_kategori_servis::all();
 
         $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::where('id', $spp_pusat_khidmat_servis)->first();
 
         return view('spp_pusat_khidmat_servis.edit',[
             'spp_pusat_khidmat_servis'=>$spp_pusat_khidmat_servis,
             'spp_pusat_khidmat_servis1'=>$spp_pusat_khidmat_servis1,
-            'spp_pusat_khidmat_servis2'=>$spp_pusat_khidmat_servis2
+            // 'spp_pusat_khidmat_servis2'=>$spp_pusat_khidmat_servis2
         ]);
     }
 
@@ -137,6 +137,8 @@ class SppPusatKhidmatServisController extends Controller
      */
     public function update(Request $request, spp_pusat_khidmat_servis $spp_pusat_khidmat_servis)
     {
+        // dd($request);
+        $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::where('id', $request-> id)->first();
         $spp_pusat_khidmat_servis->idPKhidmat = $request->idPKhidmat;
         $spp_pusat_khidmat_servis->idKatServis = $request->idKatServis;
         $spp_pusat_khidmat_servis->nama = $request->nama;
@@ -155,10 +157,10 @@ class SppPusatKhidmatServisController extends Controller
      * @param  \App\Models\spp_pusat_khidmat_servis  $spp_pusat_khidmat_servis
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        spp_pusat_khidmat_servis::where('id',$id)->delete();
+    public function destroy(spp_pusat_khidmat_servis $spp_pusat_khidmat_servis)
+    {   
+        $spp_pusat_khidmat_servis->delete();
         return redirect('/spp_pusat_khidmat_servis')
-        ->with('success', 'post deleted successfully');
+        ->with('success', ' deleted successfully');
     }
 }

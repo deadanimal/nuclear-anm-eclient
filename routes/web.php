@@ -25,12 +25,13 @@ Route::get('/base', function () {
     return view('base');
 });
 Route::get('/bases', function () {
-    return view('bases');
+    return view('dashboard');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('bases');
+});
+// ->middleware(['auth'])->name('dashboard');
 
 Route::get('/dashboard1', function () {
     return view('dashboard1');
@@ -62,7 +63,7 @@ Route::post('/spp_profil_harga_servis_store','App\Http\Controllers\SppProfilHarg
 Route::resource('/spp_profil_syarikat','App\Http\Controllers\SppProfilSyarikatController'::class);
 Route::post('daerah','App\Http\Controllers\SppProfilSyarikatController@getDaerah');
 Route::post('kod_syarikat','App\Http\Controllers\SppProfilSyarikatController@getKodKatSyarikat');
-Route::get('syarikat_carian','App\Http\Controllers\SppProfilSyarikatController@getSyarikat');
+Route::post('carian_syarikat','App\Http\Controllers\SppProfilSyarikatController@getSyarikat');
 
 Route::resource('/spp_pusat_khidmat','App\Http\Controllers\SppPusatKhidmatController'::class);
 // Route::get('syarikat_carian','App\Http\Controllers\SppProfilSyarikatController@getSyarikat');
@@ -78,10 +79,34 @@ Route::resource('/kod_bayaran','App\Http\Controllers\KodBayaranController'::clas
 
 Route::resource('/kod_negeri','App\Http\Controllers\KodNegeriController'::class);
 
+Route::resource('/kod_kategori_servis','App\Http\Controllers\KodKategoriServisController'::class);
+Route::post('/kategori_proses_template','App\Http\Controllers\KodKategoriServisController@getProsesTemplate'::class);
+Route::post('/detail_proses','App\Http\Controllers\KodKategoriServisController@getDetailProses'::class);
+
 Route::resource('/kod_daerah','App\Http\Controllers\KodDaerahController'::class);
-
-
 Route::post('/idNegSel','App\Http\Controllers\KodDaerahController@getNegeri');
+
+Route::resource('/kod_sijil_iso','App\Http\Controllers\KodSijilIsoController'::class);
+
+Route::resource('/kod_status_syarikat','App\Http\Controllers\KodStatusSyarikatController'::class);
+
+Route::resource('/template_perjanjian_main','App\Http\Controllers\TemplatePerjanjianMainController'::class);
+Route::post('/template_detail','App\Http\Controllers\TemplatePerjanjianMainController@getDetailTemplate');
+
+Route::resource('/template_perjanjian_detail','App\Http\Controllers\TemplatePerjanjianDetailController'::class);
+
+Route::resource('/spp_proses_template_detail','App\Http\Controllers\SppProsesTemplateDetailController'::class);
+
+Route::resource('/spp_proses_template_sijil','App\Http\Controllers\SppProsesTemplateSijilController'::class);
+
+Route::resource('/spp_proses_template_sijil_detail','App\Http\Controllers\SppProsesTemplateSijilDetailController'::class);
+Route::post('/spp_proses_template_sijil_detail_index','App\Http\Controllers\SppProsesTemplateSijilDetailController@index');
+
+Route::resource('/sw_menu_main','App\Http\Controllers\SwMenuMainController'::class);
+
+
+
+
 
 
 

@@ -4,7 +4,7 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 80%;
+  width: 9px;
   center;
 }
 
@@ -61,8 +61,6 @@ tr:nth-child(even) {
     <th>Email</th>
     <th>Action</th>
     <th>Description</th>
-    {{-- <th>Created time</th>
-    <th>Update time</th> --}}
     <th>Update</th>
   </tr>
   @foreach ($spp_pusat_khidmat as $spk)
@@ -71,14 +69,15 @@ tr:nth-child(even) {
     <td><ul> {{ $spk -> kumpulan}}</ul></td>
     <td><ul> {{ $spk -> nama}}</ul></td>
     <td><ul> {{ $spk -> namaE}}</ul></td>
-    <td><button type='button' onclick='productDelete(this);' class='btn btn-default'>" + "<span class='glyphicon glyphicon-remove' /></button></td>
-    {{-- <td> <a href="{{ route('spp_pusat_khidmat.edit',$spp_pusat_khidmat->id) }}">Kemaskini</a></td> --}}
+    <td><a href="spp_pusat_khidmat/{{ $spk -> id }}/edit">Kemaskini</a>
+      <form action="/spp_pusat_khidmat/{{ $spk -> id }}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button type="submit"><span class="fas fa-bin"></span>BUANG</button>
+      </form>
+    </td>
     </tr>
 @endforeach
 </table>
-<script>
-  function productDelete(ctl) {
-    $(ctl).parents("tr").remove();
-}
-</script>
+
 @endsection

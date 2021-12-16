@@ -3,10 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\kod_kategori_servis;
+use App\Models\spp_proses_template_detail;
+use App\Models\spp_proses_template_main;
 use Illuminate\Http\Request;
 
 class KodKategoriServisController extends Controller
 {
+    public function getProsesTemplate(Request $request){
+        // dd('masuk');
+        $itmp = [];
+        $it = spp_proses_template_main::where('idKatServis',$request->id)->get();
+        foreach($it as $kod){
+            $itmp['ipt'][] = $kod;
+        }
+        echo json_encode($itmp);
+        exit();
+    }
+    public function getDetailProses(Request $request)
+    {
+                // dd($request);
+        $searchNama = [];
+
+        if (isset($request->id)){
+            $searchNama = spp_proses_template_detail::where('idTemplate',$request->id)
+            ->get();
+        }
+        return view('kod_kategori_servis.carian',[
+            'kod_kategori_servis'=>$searchNama,
+        ]);
+    }
+    
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +42,11 @@ class KodKategoriServisController extends Controller
      */
     public function index()
     {
-        //
+        $kod_kategori_servis = kod_kategori_servis::all();
+
+        return view('kod_kategori_servis.index',[
+            'kod_kategori_servis'=>$kod_kategori_servis,
+        ]);
     }
 
     /**
@@ -35,7 +67,12 @@ class KodKategoriServisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kod_kategori_servis = new kod_kategori_servis();
+        $kod_kategori_servis->kod = $request->kod;
+        $kod_kategori_servis->nama = $request->nama;
+
+        $kod_kategori_servis->save();
+        return redirect('/kod_kategori_servis');
     }
 
     /**
@@ -57,7 +94,11 @@ class KodKategoriServisController extends Controller
      */
     public function edit(kod_kategori_servis $kod_kategori_servis)
     {
-        //
+        $kod_kategori_servis = kod_kategori_servis::all();
+
+        return view('kod_kategori_servis.edit',[
+            'kod_kategori_servis'=>$kod_kategori_servis,
+        ]);
     }
 
     /**
@@ -69,7 +110,11 @@ class KodKategoriServisController extends Controller
      */
     public function update(Request $request, kod_kategori_servis $kod_kategori_servis)
     {
-        //
+        $kod_kategori_servis->kod = $request->kod;
+        $kod_kategori_servis->nama = $request->nama;
+
+        $kod_kategori_servis->save();
+        return redirect('/kod_kategori_servis');
     }
 
     /**
@@ -80,6 +125,8 @@ class KodKategoriServisController extends Controller
      */
     public function destroy(kod_kategori_servis $kod_kategori_servis)
     {
-        //
+        $kod_kategori_servis->delete();
+        return redirect('/kod_kategori_servis')
+        ->with('success', 'deleted successfully');
     }
 }

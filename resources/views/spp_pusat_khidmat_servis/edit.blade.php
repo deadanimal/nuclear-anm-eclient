@@ -4,7 +4,7 @@
 @section('content')     
 
 <section class="content" style="">
-  <form method="POST" action="{{ route('spp_pusat_khidmat_servis.update',$spp_pusat_khidmat_servis->id) }}">
+  <form method="POST" action="/spp_pusat_khidmat_servis/{{ $spp_pusat_khidmat_servis->id }}">
     @method('PUT')
     <div>
       <div class="row">
@@ -13,21 +13,22 @@
             @csrf
             <div>
               <label for="pusat_perkhidmatan">Pusat Perkhimatan:</label>
-              <select name="pusat_perkhidmatan" id="pusat_perkhidmatan" >
-                {{-- <option value="{{ $spp_pusat_khidmat_servis-> idPKhidmat }}">{{ $spp_pusat_khidmat_servis-> idPKhidmat }}</option>x --}}
+              <select name="idPKhidmat" id="pusat_perkhidmatan" >
                 @foreach  ($spp_pusat_khidmat_servis1 as $mo)
                 <option {{ $spp_pusat_khidmat_servis-> idPKhidmat ==  $mo-> id ? 'selected':''  }} value="{{ $mo-> id }}">{{ $mo -> kumpulan  }} - {{ $mo -> nama  }}</option>
                 @endforeach
               </select>
               <br>
-              <label for="kategori_servis">Jenis Perkhimatan:</label>
-              <select  name="kategori_servis" id="kategori_servis"></select>
-              {{-- <option {{ $spp_pusat_khidmat_servis-> idKatServis ==  $spp_pusat_khidmat_servis2-> id ? 'selected':''   }}> {{ $spp_pusat_khidmat_servis-> idKatServis }}</option> --}}
+              <label for="kategori_servis">Kategori Perkhimatan:</label>
+              <select  name="idKatServis" id="kategori_servis">
+                <option value="{{ $spp_pusat_khidmat_servis-> idKatServis}}"></option>
+              </select>
               <br>
+              <input class="form-control" value="{{ $spp_pusat_khidmat_servis->id }}"  type="text" name="id" hidden>
 
 
-              <input class="form-control" value="pusat_perkhidmatan"  type="text" id="idPKhidmat" name="idPKhidmat" hidden>
-              <input class="form-control" value="kategori_servis"  type="text" id="idKatServis" name="idKatServis" hidden>
+              {{-- <input class="form-control" value="{{ $spp_pusat_khidmat_servis->idPKhidmat }}"  type="text" id="idPKhidmat" name="idPKhidmat" hidden>
+              <input class="form-control" value="{{ $spp_pusat_khidmat_servis->idKategoriSyarikat }}"  type="text" id="idKatServis" name="idKatServis" hidden> --}}
 
               <label style=" padding-right: 20px" for="nama">JENIS PERKHIDMATAN (BM) :</label>
               <input class="form-control" value="{{ $spp_pusat_khidmat_servis-> nama }}"  type="text" id="nama" name="nama" >
@@ -38,7 +39,7 @@
               <label style=" padding-right: 20px" for="catatanE">Catatan(BI) :</label>
               <input class="form-control" placeholder="catatan"  type="text" id="catatanE" value="{{ $spp_pusat_khidmat_servis-> catatanE }}" name="catatanE" > <br>
             </div>
-            <input type="submit" value="{{ $spp_pusat_khidmat_servis-> idKatServis }}Submit"  id="new_spp"><br>
+            <input type="submit" value="submit"><br>
           </div>
         </div>
       </div>

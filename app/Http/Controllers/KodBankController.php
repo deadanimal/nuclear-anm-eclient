@@ -66,8 +66,6 @@ class KodBankController extends Controller
      */
     public function edit(kod_bank $kod_bank)
     {
-        $kod_bank = kod_bank::all();
-
         return view('kod_bank.edit',[
             'kod_bank'=>$kod_bank,
         ]);
@@ -95,12 +93,9 @@ class KodBankController extends Controller
      * @param  \App\Models\kod_bank  $kod_bank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kod_bank $kod_bank,$id)
+    public function destroy(kod_bank $kod_bank)
     {
-        $kod_bank = kod_bank::where('id', $kod_bank)->first();
-
-        kod_bank::where('id',$id)->delete();
-        return redirect('/kod_bank')
-        ->with('success', 'post deleted successfully');
+        $kod_bank->delete();
+        return redirect('/kod_bank');
     }
 }

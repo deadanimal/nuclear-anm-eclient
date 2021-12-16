@@ -117,7 +117,7 @@ class SppProfilHargaServisController extends Controller
     
         ]);
         $spp_profil_harga_servis->update($request->all());
-        dd('submit');
+        // dd('submit');
     
         return redirect()->route('$spp_profil_harga_servis.index')
                         ->with('success','$spp_profil_harga_servis updated successfully');
@@ -150,8 +150,8 @@ class SppProfilHargaServisController extends Controller
      */
     public function destroy(spp_profil_harga_servis $spp_profil_harga_servis)
     {
-        spp_profil_harga_servis::where('id',$spp_profil_harga_servis)->delete();
-        return redirect()->route('/spp_profil_harga_servis.index')
-        ->with('success', 'post deleted successfully');
+        $spp_profil_harga_servis->delete();
+        return redirect('/spp_profil_harga_servis')
+        ->with('success', ' deleted successfully');
     }
 }

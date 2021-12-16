@@ -5,36 +5,23 @@
 </style>
 @section('content')   
 
-<label for="myInput">Nama Syarikat/No Syarikat</label>
-<input id="myInput" type="text" placeholder="Search..">
+<form action="carian_syarikat" method="POST">
+  @csrf
+  <label for="nama">Nama Syarikat/No Syarikat</label>
+<input name="nama" id="myInput" type="text" placeholder="Search..">
 
 <br>
-<label for="kod_kategori_syarikat">Kategori Syarikat </label>
+<label for="idKategoriSyarikat">Kategori Syarikat </label>
 
-<select name="kod_kategori_syarikat" id="kod_negeri_syarikat">
+<select name="idKategoriSyarikat" id="kod_negeri_syarikat">
 @foreach ($spp_profil_syarikat1 as $kod)
   <option value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
 @endforeach
 </select>
+<button type="submit" value="submit">Search</button>
+</form>
 
-<table style="display:none" id="hiddenTable" class="table ">
-  <thead class="thead-dark">
-  <tr>
-    <th>Firstname</th>
-    <th>Alamat</th>
-    <th>No Tel</th>
-  </tr>
-  </thead>
-  <tbody id="myTable">
-    @foreach  ($spp_profil_syarikat as $mo)
-  <tr id='idnegeri' {{ $mo -> id  }}>
-    <td value="">{{ $mo -> nama  }}</td>
-    <td value="">{{ $mo -> alamat1  }}{{ $mo -> alamat  }}</td>
-    <td value="">{{ $mo -> noTel  }}</td>
-  </tr>
-  @endforeach
-  </tbody>
-</table>
+{{-- 
 <table>
   <tr>
     <th>NAMA</th>
@@ -65,6 +52,6 @@
              });
             });
     });
-  </script>
+  </script> --}}
 
 @endsection

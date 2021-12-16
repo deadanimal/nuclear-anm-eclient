@@ -19,21 +19,13 @@ tr:nth-child(even) {
 }
 </style>
 @section('content')   
-<h2>KOD NEGERI</h2>
+<h2>KOD DAERAH</h2>
 
 <br>
-<select name="idNegeriS" id="idNegeriS">
-  @foreach ($kod_daerah1 as $kod)
-    <option value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
-  @endforeach
-</select>
+
 <br>
 
-<form action="/kod_daerah/" method="POST" id="new_servis_pusat_khidmat">
-  @csrf
 <br>
-<table style="text-align: center">
-
 <table id="myTable"  style="text-align: center">
   <thead>
     <tr align="center">
@@ -45,9 +37,14 @@ tr:nth-child(even) {
   </thead>
   <tbody>
     <tr>
-    <form action="/kod_daerah/" method="POST" id="new_servis_pusat_khidmat">
+    <form action="/kod_daerah" method="POST">
       @csrf
-    <td> <input name="idNegeri" id="idNegeriinput" type="text" class=""></td>
+      <select name="idNegeri" id="idNegeriS">
+        @foreach ($kod_daerah1 as $kod)
+          <option value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
+        @endforeach
+      </select>
+    <td> <input name="" id="idNegeriinput" type="text" class=""></td>
     <td> <input name="kod" type="text" class=""></td>
     <td> <input name="nama" type="text" class=""></td>
     <td><button type="submit" value="submit">TAMBAH</button></td>
@@ -94,7 +91,12 @@ $(document).ready(function() {
                 <td >${value.kod}</td>
                 <td >${value.nama}</td>
                 <td> <a href="/kod_daerah/${value.id}/edit">Kemaskini</a><br>
-                <a href="/kod_daerah/${value.id}/delete">Delete</a></td>
+                  <form action="/kod_daerah/${value.id}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit"><span class="fas fa-bin"></span></button>
+                  </form>
+                </td>
                 </tr>`
                 );
           });

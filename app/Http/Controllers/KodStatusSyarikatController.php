@@ -67,10 +67,11 @@ class KodStatusSyarikatController extends Controller
      */
     public function edit(kod_status_syarikat $kod_status_syarikat)
     {
-        $kod_status_syarikat = kod_status_syarikat::all();
+        $kod_status_syarikat1 = kod_status_syarikat::all();
 
         return view('kod_status_syarikat.edit',[
             'kod_status_syarikat'=>$kod_status_syarikat,
+            'kod_status_syarikat1'=>$kod_status_syarikat1,
         ]);
     }
 
@@ -96,11 +97,9 @@ class KodStatusSyarikatController extends Controller
      * @param  \App\Models\kod_status_syarikat  $kod_status_syarikat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kod_status_syarikat $kod_status_syarikat, $id)
+    public function destroy(kod_status_syarikat $kod_status_syarikat)
     {
-        $kod_status_syarikat = kod_status_syarikat::where('id', $kod_status_syarikat)->first();
-
-        kod_status_syarikat::where('id',$id)->delete();
+        $kod_status_syarikat->delete();
         return redirect('/kod_status_syarikat')
         ->with('success', 'post deleted successfully');
     }

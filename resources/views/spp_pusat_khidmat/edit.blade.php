@@ -1,120 +1,82 @@
+
 @extends('bases')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  center;
+}
 
-@section('content')     
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-<section class="content" style="">
-  <form method="POST" action="{{ route('spp_pusat_khidmat_servis.update',$spp_pusat_khidmat_servis->id) }}">
-    @method('PUT')
-    <div>
-      <div class="row">
-        <div class="col card">
-          <div class="form-group">
-            @csrf
-            <div>
-              <label for="pusat_perkhidmatan">Pusat Perkhimatan:</label>
-              <select name="pusat_perkhidmatan" id="pusat_perkhidmatan" >
-                {{-- <option value="{{ $spp_pusat_khidmat_servis-> idPKhidmat }}">{{ $spp_pusat_khidmat_servis-> idPKhidmat }}</option>x --}}
-                @foreach  ($spp_pusat_khidmat_servis1 as $mo)
-                <option {{ $spp_pusat_khidmat_servis-> idPKhidmat ==  $mo-> id ? 'selected':''  }} value="{{ $mo-> id }}">{{ $mo -> kumpulan  }} - {{ $mo -> nama  }}</option>
-                @endforeach
-              </select>
-              <br>
-              <label for="kategori_servis">Jenis Perkhimatan:</label>
-              <select  name="kategori_servis" id="kategori_servis"></select>
-              {{-- <option {{ $spp_pusat_khidmat_servis-> idKatServis ==  $spp_pusat_khidmat_servis2-> id ? 'selected':''   }}> {{ $spp_pusat_khidmat_servis-> idKatServis }}</option> --}}
-              <br>
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+@section('content')   
 
+<br>
+<form action="/spp_pusat_khidmat/{{ $spp_pusat_khidmat -> id}}" method="POST" id="new_servis_pusat_khidmat">
+  @method('PUT')
+  @csrf
+<br>
+<table style="text-align: center">
+<h2>Pusat Khidmat</h2>
 
-              <input class="form-control" value="pusat_perkhidmatan"  type="text" id="idPKhidmat" name="idPKhidmat" hidden>
-              <input class="form-control" value="kategori_servis"  type="text" id="idKatServis" name="idKatServis" hidden>
+<tr style="text-align: center">
+    <td><label for="kumpulan">KUMPULAN</label></td>
+    <td> <input value="{{ $spp_pusat_khidmat -> kumpulan}}" name="kumpulan" type="text" class=""></td>
+<br>
+</tr>
+<tr style="text-align: center">
+  <td><label for="nama">NAMA</label></td>
+  <td> <input value="{{ $spp_pusat_khidmat -> nama}}" name="nama" type="text" class=""></td>
+<br>
+</tr>
+<tr style="text-align: center">
+  <td><label for="namaE">NAMA LAIN</label></td>
+  <td> <input value="{{ $spp_pusat_khidmat -> namaE}}" name="namaE" type="text" class=""></td>
+<br>
+</tr>
+<tr style="text-align: center">
+  <td><label for="cid">CID</label></td>
+  <td> <input value="{{ $spp_pusat_khidmat -> cid}}" name="cid" type="text" class=""></td>
+</tr>
 
-              <label style=" padding-right: 20px" for="nama">JENIS PERKHIDMATAN (BM) :</label>
-              <input class="form-control" value="{{ $spp_pusat_khidmat_servis-> nama }}"  type="text" id="nama" name="nama" >
-              <label style=" padding-right: 20px" for="catatan">Catatan(BM) :</label>
-              <input class="form-control" placeholder="catatan" value="{{ $spp_pusat_khidmat_servis-> catatan }}" type="text" id="catatan" name="catatan" > <br>
-              <label style=" padding-right: 20px" for="namaE"></label>JENIS PERKHIDMATAN (BI) :<br>
-              <input class="form-control" value="{{ $spp_pusat_khidmat_servis-> namaE }}"  type="text" id="namaE" name="namaE" >
-              <label style=" padding-right: 20px" for="catatanE">Catatan(BI) :</label>
-              <input class="form-control" placeholder="catatan"  type="text" id="catatanE" value="{{ $spp_pusat_khidmat_servis-> catatanE }}" name="catatanE" > <br>
-            </div>
-            <input type="submit" value="{{ $spp_pusat_khidmat_servis-> idKatServis }}Submit"  id="new_spp"><br>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-      <table>
-      <tr>
-        <th>BIL</th>
-        <th>KHIDMAT/PRODUK</th>
-        <th>CATATAN</th>
-      </tr>
-      <tbody id="pusat_perkhidmatan_servis">
-      </tbody>
-    </table>
-  <br>
-  <br>
-  </form>
+<br>
 
+</table>
+<br>
+<button type="submit" value="submit">KEMASKINI</button>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(document).on('change','#pusat_perkhidmatan',function(){
-      $("#kategori_servis").empty();
-      let selected = $(this).val();
-      $.ajax({
-          method: "POST",
-          url: "{{ url('/kategori_servis') }}",
-          data: {
-              "_token": "{{ csrf_token() }}",
-              "id": selected,
-          },
-      }).done(function(response) {
-          var data = jQuery.parseJSON(response);
-          $('#kategori_servis').html('');
-          $('#kategori_servis').append('<option  value="">Pilih...</option>');
-          $.each(data.kkat, function(index,value) {
-            $('#kategori_servis').append('<option value="'+value.id+'">'+value.kod+value.nama+'</option>');
-            });
-            });
-            });
-    $(document).on('change','#kategori_servis',function(){
-      $("#pusat_perkhidmatan_servis").empty();
-      let selected1 = $('#pusat_perkhidmatan').val();
-      // console.log(selected1);
-      let selected = $(this).val();
-      $.ajax({
-          method: "POST",
-          url: "{{ url('pusat_perkhidmatan_servis') }}",
-          data: {
-              "_token": "{{ csrf_token() }}",
-              "id1": selected1,
-              "id": selected,
-          },
-      }).done(function(response) {
-          var data = jQuery.parseJSON(response);
-          $('#pusat_perkhidmatan_servis').html('');
-          $('#pusat_perkhidmatan_servis').append('<tr value=""></tr>');
-          var counter = 1;
-          $.each(data.pks, function(index,value) {
-              $('#pusat_perkhidmatan_servis').append(
-                `<tr><td value="${value.id}">${counter}</td><td >${value.nama}</td><td >${value.catatan}</td>
-                </tr>`);
-                counter++;
-                });
-                });
-                });
-                $(document).on('click','#new_spp',function(){
-      let selected1 = $('#pusat_perkhidmatan').val();
-      let selected = $('#kategori_servis').val();
-      $('#idPKhidmat').val(selected1);
-      $('#idKatServis').val(selected);
-      // $('#new_servis_pusat_khidmat').submit();
-    });
-  });
+</form>
+
+<table style="text-align: center">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Action</th>
+    <th>Description</th>
+    <th>Update</th>
+  </tr>
+  @foreach ($spp_pusat_khidmat1 as $spk)
+  <tr style="text-align: center">
+    <td><ul> {{ $spk -> kod}}</ul></td>
+    <td><ul> {{ $spk -> kumpulan}}</ul></td>
+    <td><ul> {{ $spk -> nama}}</ul></td>
+    <td><ul> {{ $spk -> namaE}}</ul></td>
+    <td><a href="spp_pusat_khidmat/{{ $spk -> id }}/edit">Kemaskini</a><button type='button' onclick='productDelete(this);' class='btn btn-DANGER'>BUANG<span class='glyphicon glyphicon-remove' /></button></td>
+    </tr>
+@endforeach
+</table>
+<script>
+  function productDelete(ctl) {
+    $(ctl).parents("tr").remove();
+}
 </script>
-
-</section>
 @endsection
-

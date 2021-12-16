@@ -15,25 +15,25 @@
           <div class="form-group">
             @csrf
             <div>
-              <label for="pusat_perkhidmatan">Pusat Perkhimatan:</label>
-              <select name="pusat_perkhidmatan" id="pusat_perkhidmatan" >
+              <label for="idPkhidmat">Pusat Perkhimatan:</label>
+              <select name="idPkhidmat" id="pusat_perkhidmatan" >
                 <option value=""> Sila pilih:</option>
                 @foreach  ($spp_profil_harga_servis as $mo)
                 <option value="{{ $mo-> id }}">{{ $mo -> kumpulan  }} - {{ $mo -> nama  }}</option>
                 @endforeach
               </select>
               <br>
-              <label for="kategori_servis">Kategori Perkhimatan:</label>
-              <select name="kategori_servis" id="kategori_servis"></select>
+              <label for="idPkhidmatServis">Kategori Perkhimatan:</label>
+              <select name="idPkhidmatServis" id="kategori_servis"></select>
               <br>
-              <label style=" padding-right: 20px" for="nama">NAMA PERKHIDMATAN (BM) :</label>
-              <input class="form-control" value=""  type="text" id="nama" name="nama " >
-              <label style=" padding-right: 20px" for="catatan">Catatan(BM) :</label>
-              <input class="form-control" placeholder="catatan"  type="text" id="catatan" name="catatan" > <br>
-              <label style=" padding-right: 20px" for="namaE"></label>NAMA  PERKHIDMATAN (BI) :<br>
-              <input class="form-control" value=""  type="text" id="namaE" name="nama E" >
-              <label style=" padding-right: 20px" for="catatanE">Catatan(BI) :</label>
-              <input class="form-control" placeholder="catatan"  type="text" id="catatanE" name="catatanE" > <br>
+              <label  for="nama">NAMA PERKHIDMATAN (BM) :  </label>
+              <input class="form-control" value="" placeholder="" type="text" id="nama" name="nama" >
+              <label  for="nameE"></label>NAMA PERKHIDMATAN (BI) :<br>
+              <input class="form-control" value="" placeholder="" type="text" id="nameE" name="nameE" >
+              <label  for="hargaY">HARGA :</label>
+              <input class="form-control" placeholder=""  type="text" value="" id="hargaY" name="hargaY" > <br>
+              <label  for="unitHarga">UNIT HARGA :</label>
+              <input class="form-control" placeholder=""  type="text" value="" id="unitHarga" name="unitHarga" > <br>
             </div>
             <input type="submit" value="Submit"><br>
           </div>

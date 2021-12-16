@@ -18,12 +18,12 @@ tr:nth-child(even) {
 }
 </style>
 @section('content')   
-<h2>KOD NEGERI</h2>
+<h2>KOD DAERAH</h2>
 {{-- //{{ $kod_daerah-> idNegeri ==  $kod-> nama ? 'selected':''  }} --}}
 <br>
 <select name="idNegeriS" id="idNegeriS">
   @foreach ($kod_daerah1 as $kod)
-    <option  value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
+    <option {{ $kod_daerah-> idNegeri ==  $kod-> id ? 'selected':''  }}  value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
   @endforeach
 </select>
 <br>
@@ -42,13 +42,13 @@ tr:nth-child(even) {
   </thead>
   <tbody>
     <tr>
-    <form action="{{ route('kod_daerah.update',$kod_daerah->id) }}" method="POST" >
+    <form action="/kod_daerah/{{ $kod_daerah -> id }}" method="POST" >
       @method('PUT')
       @csrf
-    <td> <input value="{{ $kod_daerah -> idNegeri }}" name="idNegeri" id="idNegeriinput" type="text" class=""></td>
+    <td> <input value="{{ $kod_daerah -> idNegeri }}" name="idNegeri" id="idNegeriinput" type="text" class="" ></td>
     <td> <input value="{{ $kod_daerah -> kod }}" name="kod" type="text" class=""></td>
     <td> <input value="{{ $kod_daerah -> nama  }}" name="nama" type="text" class=""></td>
-    <td><button type="submit" value="submit">TAMBAH</button></td>
+    <td><button type="submit" value="submit">KEMASKINI</button></td>
   </form>
   </tr>
 

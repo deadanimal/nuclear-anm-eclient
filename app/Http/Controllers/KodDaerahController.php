@@ -63,10 +63,11 @@ class KodDaerahController extends Controller
      */
     public function store(Request $request)
     {
+        // dd('ssss');
         $kod_daerah = new kod_daerah();
+        $kod_daerah->kod = $request->kod;
         $kod_daerah->idNegeri = $request->idNegeri;
         $kod_daerah->nama = $request->nama;
-        // $kod_daerah->idKawasan = $request->idKawasan;
 
         $kod_daerah->save();
         return redirect('/kod_daerah');
@@ -91,13 +92,18 @@ class KodDaerahController extends Controller
      */
     public function edit(kod_daerah $kod_daerah)
     {
+        // dd($kod_daerah);
 
-        $kod_daerah = kod_daerah::all();
+        // $kod_daerah = kod_daerah::where('id', $kod_daerah)->first();
+
+        // $kod_daerah = kod_daerah::all();
         $kod_negeri = kod_negeri::all();
+
 
         return view('kod_daerah.edit',[
             'kod_daerah'=>$kod_daerah,
             'kod_daerah1'=>$kod_negeri,
+            // 'kod_daerah1'=>$kod_negeri,
         ]);
     }
 
@@ -108,11 +114,11 @@ class KodDaerahController extends Controller
      * @param  \App\Models\kod_daerah  $kod_daerah
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, kod_daerah $kod_daerah,$id)
+    public function update(Request $request, kod_daerah $kod_daerah)
     {
         $kod_daerah->idNegeri = $request->idNegeri;
         $kod_daerah->nama = $request->nama;
-        // $kod_daerah->idKawasan = $request->idKawasan;
+        $kod_daerah->kod = $request->kod;
 
         $kod_daerah->save();
         return redirect('/kod_daerah');
@@ -124,13 +130,11 @@ class KodDaerahController extends Controller
      * @param  \App\Models\kod_daerah  $kod_daerah
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kod_daerah $kod_daerah,$id)
+    public function destroy(kod_daerah $kod_daerah)
     {
-        $kod_daerah = kod_daerah::where('id', $kod_daerah)->first();
-
-        kod_daerah::where('id',$id)->delete();
+        $kod_daerah->delete();
         return redirect('/kod_daerah')
-        ->with('success', 'post deleted successfully');
+        ->with('success', 'deleted successfully');
         //
     }
 }

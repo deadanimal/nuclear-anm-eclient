@@ -25,14 +25,12 @@ tr:nth-child(even) {
   @csrf
 <br>
 <table style="text-align: center">
-<h2>KOD BANK</h2>
+<h2>KOD STATUS SYARIKAT</h2>
 
 <table style="text-align: center">
   <tr>
     <th>KOD</th>
     <th>NAMA</th>
-    {{-- <th>Created time</th>
-    <th>Update time</th> --}}
     <th>TINDAKAN</th>
   </tr>
   <tr>
@@ -47,14 +45,13 @@ tr:nth-child(even) {
   <tr>
     <td><ul> {{ $spk -> kod}}</ul></td>
     <td><ul> {{ $spk -> nama}}</ul></td>
-    <td><button type='button' onclick='productDelete(this);' class='btn btn-default'>delete<span class='glyphicon glyphicon-remove' /></button></td>
-    {{-- <td> <a href="{{ route('kod_status_syarikat.edit',$kod_status_syarikat->id) }}">Kemaskini</a></td> --}}
-    </tr>
+    <td>      <form action="/kod_status_syarikat/{{ $spk -> id }}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button type="submit"><span class="fas fa-bin"></span></button>
+      </form>
+    <a href="/kod_status_syarikat/{{ $spk -> id }}/edit">Kemaskini</a></td>
+  </tr>
 @endforeach
 </table>
-<script>
-  function productDelete(ctl) {
-    $(ctl).parents("tr").remove();
-}
-</script>
 @endsection

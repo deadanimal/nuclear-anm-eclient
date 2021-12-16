@@ -68,10 +68,11 @@ class KodNegeriController extends Controller
      */
     public function edit(kod_negeri $kod_negeri)
     {
-        $kod_negeri = kod_negeri::all();
+        $kod_negeri1 = kod_negeri::all();
 
         return view('kod_negeri.edit',[
             'kod_negeri'=>$kod_negeri,
+            'kod_negeri1'=>$kod_negeri1,
         ]);
     }
 
@@ -98,13 +99,11 @@ class KodNegeriController extends Controller
      * @param  \App\Models\kod_negeri  $kod_negeri
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kod_negeri $kod_negeri,$id)
+    public function destroy(kod_negeri $kod_negeri)
     {
-        $kod_negeri = kod_negeri::where('id', $kod_negeri)->first();
-
-        kod_negeri::where('id',$id)->delete();
+        $kod_negeri->delete();
         return redirect('/kod_negeri')
-        ->with('success', 'post deleted successfully');
+        ->with('success', 'deleted successfully');
         //
     }
 }

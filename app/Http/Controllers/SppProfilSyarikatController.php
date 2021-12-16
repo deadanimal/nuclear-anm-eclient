@@ -10,26 +10,26 @@ use Illuminate\Http\Request;
 
 class SppProfilSyarikatController extends Controller
 {
-    public function getSyarikat(Request $request){
+    public function getSyarikat( Request $request){
 
-        $search = [];
-        $kod_kategori_syarikat = kod_kategori_syarikat::all();
+        // dd($request);
+        $searchNama = [];
+        // $kod_kategori_syarikat = kod_kategori_syarikat::all();
         $spp_profil_syarikat = spp_profil_syarikat::all();
 
-        if ($request->nama){
-            $search = $spp_profil_syarikat
-            ->where('nama', $request->nama)
-            ->orWhere('nama', $request->id)->get();
-           
+        if (isset($request->nama,$request->idKategoriSyarikat)){
+            $searchNama = spp_profil_syarikat::where('nama', 'LIKE', '%'.$request->nama.'%')
+            ->where('idKategoriSyarikat', 'LIKE', '%'.$request->idKategoriSyarikat.'%')
+            ->get();
         }
-        // if ($request->kod_kategori_syarikat){
-        //     $search = $spp_profil_syarikat->where('idKategoriSyarikat', $request->id);
-        //     dd($search);
+        // dd($searchNama);
+        // if (isset($request->('id'))){
+        //     $searchNama = spp_profil_syarikat::where('idKategoriSyarikat', $request->idKategoriSyarikat)->get();
         // }
-        return view('spp_profil_syarikat.search',[
-            'spp_profil_syarikat'=>$search,
-            'spp_profil_syarikat2'=>$kod_kategori_syarikat,
-            // 'spp_profil_syarikat2'=>$search2,
+        return view('spp_profil_syarikat.carian',[
+            'spp_profil_syarikat'=>$searchNama,
+            // 'spp_profil_syarikat2'=>$kod_kategori_syarikat,
+            'spp_profil_syarikat3'=>$spp_profil_syarikat,
         ]);
     }
 
@@ -127,8 +127,9 @@ class SppProfilSyarikatController extends Controller
      * @param  \App\Models\spp_profil_syarikat  $spp_profil_syarikat
      * @return \Illuminate\Http\Response
      */
-    public function show(spp_profil_syarikat $spp_profil_syarikat)
+    public function show(spp_profil_syarikat $spp_profil_syarikat )
     {
+
         //
     }
 
@@ -185,8 +186,8 @@ class SppProfilSyarikatController extends Controller
      */
     public function destroy(spp_profil_syarikat $spp_profil_syarikat)
     {
-        spp_profil_syarikat::where('id',$spp_profil_syarikat)->delete();
-        return redirect()->route('/spp_profil_syarikat.index')
-        ->with('success', 'post deleted successfully');
+        $spp_profil_syarikat->delete();
+        return redirect('/spp_profil_syarikat')
+        ->with('success', ' deleted successfully');
     }
 }

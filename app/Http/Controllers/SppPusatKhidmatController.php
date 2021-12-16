@@ -76,12 +76,11 @@ class SppPusatKhidmatController extends Controller
      */
     public function edit(spp_pusat_khidmat $spp_pusat_khidmat)
     {
-        // $spp_pusat_khidmat = spp_pusat_khidmat::all();
-        $spp_pusat_khidmat = spp_pusat_khidmat::where('id', $spp_pusat_khidmat)->first();
-
-
+        $spp_pusat_khidmat1 = spp_pusat_khidmat::all();
+        // $spp_pusat_khidmat = spp_pusat_khidmat::where('id', $spp_pusat_khidmat)->first();
         return view('spp_pusat_khidmat.edit',[
             'spp_pusat_khidmat'=>$spp_pusat_khidmat,
+            'spp_pusat_khidmat1'=>$spp_pusat_khidmat1,
         ]);
     }
 
@@ -111,11 +110,9 @@ class SppPusatKhidmatController extends Controller
      * @param  \App\Models\spp_pusat_khidmat  $spp_pusat_khidmat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(spp_pusat_khidmat $spp_pusat_khidmat, $id)
+    public function destroy(spp_pusat_khidmat $spp_pusat_khidmat)
     {
-        $spp_pusat_khidmat = spp_pusat_khidmat::where('id', $spp_pusat_khidmat)->first();
-
-        spp_pusat_khidmat::where('id',$id)->delete();
+        $spp_pusat_khidmat->delete();
         return redirect('/spp_pusat_khidmat')
         ->with('success', 'post deleted successfully');
     }
