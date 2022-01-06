@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\servis_pusat_khidmat;
+use App\Models\spp_staf_info;
 use Illuminate\Http\Request;
-use App\Models\spp_pusat_khidmat;
-use App\Models\spp_pusat_khidmat_servis;
-use App\Models\kod_kategori_servis;
 
-class ServisPusatKhidmatController extends Controller
+class SppStafInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $spp_pusat_khidmat = spp_pusat_khidmat::all();
-        $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::all();
-        $kod_kategori_servis = kod_kategori_servis::all();
-
-
-
-        return view('servis_pusat_khidmat.index',[
-            'servis_pusat_khidmat'=>$spp_pusat_khidmat,
-            'servis_pusat_khidmat2'=>$spp_pusat_khidmat_servis,
-            'servis_pusat_khidmat3'=>$kod_kategori_servis,
-
-        ]);
+        //
     }
 
     /**
@@ -56,10 +41,10 @@ class ServisPusatKhidmatController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\servis_pusat_khidmat  $servis_pusat_khidmat
+     * @param  \App\Models\spp_staf_info  $spp_staf_info
      * @return \Illuminate\Http\Response
      */
-    public function show(servis_pusat_khidmat $servis_pusat_khidmat)
+    public function show(spp_staf_info $spp_staf_info)
     {
         //
     }
@@ -67,10 +52,10 @@ class ServisPusatKhidmatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\servis_pusat_khidmat  $servis_pusat_khidmat
+     * @param  \App\Models\spp_staf_info  $spp_staf_info
      * @return \Illuminate\Http\Response
      */
-    public function edit(servis_pusat_khidmat $servis_pusat_khidmat)
+    public function edit(spp_staf_info $spp_staf_info)
     {
         //
     }
@@ -79,10 +64,10 @@ class ServisPusatKhidmatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\servis_pusat_khidmat  $servis_pusat_khidmat
+     * @param  \App\Models\spp_staf_info  $spp_staf_info
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, servis_pusat_khidmat $servis_pusat_khidmat)
+    public function update(Request $request, spp_staf_info $spp_staf_info)
     {
         //
     }
@@ -90,10 +75,10 @@ class ServisPusatKhidmatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\servis_pusat_khidmat  $servis_pusat_khidmat
+     * @param  \App\Models\spp_staf_info  $spp_staf_info
      * @return \Illuminate\Http\Response
      */
-    public function destroy(servis_pusat_khidmat $servis_pusat_khidmat)
+    public function destroy(spp_staf_info $spp_staf_info)
     {
         //
     }

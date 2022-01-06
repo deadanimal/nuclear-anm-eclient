@@ -73,6 +73,20 @@ tr:nth-child(even) {
 
 <script type="text/javascript">
   $(document).ready(function(){
+    function deleteData(obj) {
+                    var id = obj.id;
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "/spp_pusat_khidmat_servis/" + id,
+                        type: "DELETE",
+                        success: function() {
+                            location.replace = "/spp_pusat_khidmat_servis";;
+                        }
+                    })
+
+                }
     $(document).on('change','#pusat_perkhidmatan1',function(){
       $("#kategori_servis").empty();
       let selected = $(this).val();
@@ -115,12 +129,11 @@ tr:nth-child(even) {
           $.each(data.pks, function(index,value) {
               $('#pusat_perkhidmatan_servis').append(
                 `<tr><td value="${value.id}">${counter}</td><td >${value.nama}</td><td >${value.catatan}</td>
-                <td> <a href="/spp_pusat_khidmat_servis/${value.id}/edit">Kemaskini</a><br>
-                <form action="/spp_pusat_khidmat_servis/${value.id}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit">BUANG</button>
-                </form></td>
+                <td> <a href="/spp_pusat_khidmat_servis/${value.id}/edit">Kemaskini</a>
+                  <br> 
+                <button onclick="deleteData(${value.id})" >BUANG</button>
+                </form>
+                </td>
                 </tr>`
                 );
                 counter++;

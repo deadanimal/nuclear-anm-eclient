@@ -16,6 +16,9 @@ class SppProfilSyarikatController extends Controller
         $searchNama = [];
         // $kod_kategori_syarikat = kod_kategori_syarikat::all();
         $spp_profil_syarikat = spp_profil_syarikat::all();
+        if (isset($request->nama)){
+            $searchNama = spp_profil_syarikat::where('nama', 'LIKE', '%'.$request->nama.'%')->get();
+        }
 
         if (isset($request->nama,$request->idKategoriSyarikat)){
             $searchNama = spp_profil_syarikat::where('nama', 'LIKE', '%'.$request->nama.'%')
@@ -68,7 +71,6 @@ class SppProfilSyarikatController extends Controller
             'spp_profil_syarikat'=>$spp_profil_syarikat,
             'spp_profil_syarikat1'=>$kod_kategori_syarikat,
             'spp_profil_syarikat2'=>$kod_negeri,
-
         ]);
     }
         /**
@@ -141,13 +143,13 @@ class SppProfilSyarikatController extends Controller
      */
     public function edit(spp_profil_syarikat $spp_profil_syarikat)
     {
-        $spp_profil_syarikat = spp_profil_syarikat::where('id', $spp_profil_syarikat)->first();
-        // dd($spp_profil_syarikat);
-        // $spp_profil_syarikat = spp_profil_syarikat::all();
+        $spp_profil_syarikat1 = kod_kategori_syarikat::all();
+        $spp_profil_syarikat2 = kod_negeri::all();
 
         return view('spp_profil_syarikat.edit',[
             'spp_profil_syarikat'=>$spp_profil_syarikat,
-            // 'spp_profil_syarikat1'=>$spp_profil_syarikat,
+            'spp_profil_syarikat1'=>$spp_profil_syarikat1,
+            'spp_profil_syarikat2'=>$spp_profil_syarikat2,
         ]);
     }
 

@@ -1,6 +1,13 @@
 
 @extends('bases')
 <style>
+  body {
+  counter-reset: section;
+}
+  h6::before {
+  counter-increment: section;
+  content:  counter(section) ".";
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -25,7 +32,7 @@ tr:nth-child(even) {
   @csrf
 <br>
 <table style="text-align: center">
-<h2>Pusat Khidmat Table</h2>
+<h5>Pusat Khidmat Table</h5>
 
 <tr style="text-align: center">
     <td><label for="kumpulan">KUMPULAN</label></td>
@@ -57,15 +64,15 @@ tr:nth-child(even) {
 
 <table style="text-align: center">
   <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Action</th>
-    <th>Description</th>
+    <th>No.</th>
+    <th>Kumpulan</th>
+    <th>Nama Penuh</th>
+    <th>Nama Lain</th>
     <th>Update</th>
   </tr>
   @foreach ($spp_pusat_khidmat as $spk)
   <tr style="text-align: center">
-    <td><ul> {{ $spk -> kod}}</ul></td>
+    <td><h6></h6></td>
     <td><ul> {{ $spk -> kumpulan}}</ul></td>
     <td><ul> {{ $spk -> nama}}</ul></td>
     <td><ul> {{ $spk -> namaE}}</ul></td>
@@ -77,6 +84,7 @@ tr:nth-child(even) {
       </form>
     </td>
     </tr>
+    {{-- counter++; --}}
 @endforeach
 </table>
 

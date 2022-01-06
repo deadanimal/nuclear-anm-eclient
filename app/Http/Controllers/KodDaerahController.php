@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kod_daerah;
 use App\Models\kod_negeri;
 use Illuminate\Http\Request;
+use DB;
 
 class KodDaerahController extends Controller
 {
@@ -136,5 +137,11 @@ class KodDaerahController extends Controller
         return redirect('/kod_daerah')
         ->with('success', 'deleted successfully');
         //
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("sw_menu_details")->whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Products Deleted successfully."]);
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')       
 <section class="content">
-  <form method="POST" action="/psm_biodata/{{ $spp_staf_info -> id}}">
+  <form method="POST" action="/spp_staf_info/{{ $spp_staf_info -> id}}">
     @method('PUT')  
         <div>
           <div class="row">
@@ -10,11 +10,11 @@
               <div class="form-group">
                 @csrf
                 <div>
-                  <label style=" padding-right: 20px" for="Bio_Nama">No Syarikat :</label>
-                  <input class="form-control" value=""  type="text"  name="Bio_Nama" >
+                  <label style=" padding-right: 20px" for="noSyarikat">No Syarikat :</label>
+                  <input class="form-control" value=""  type="text" id="noSyarikat" name="noSyarikat" >
                   <label for="idKategoriSyarikat">Kategori Syarikat:</label>
                   <select name="idKategoriSyarikat" id="kod_negeri_syarikat">
-                    @foreach ($psm_biodata as $sps)
+                    @foreach ($spp_staf_info1 as $sps)
                       <option value="{{ $sps -> id }}">{{ $sps -> nama }}</option>
                     @endforeach
                     </select>

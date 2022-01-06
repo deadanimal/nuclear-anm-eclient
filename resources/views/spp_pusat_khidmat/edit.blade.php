@@ -30,7 +30,10 @@ tr:nth-child(even) {
 
 <tr style="text-align: center">
     <td><label for="kumpulan">KUMPULAN</label></td>
-    <td> <input value="{{ $spp_pusat_khidmat -> kumpulan}}" name="kumpulan" type="text" class=""></td>
+    <td> 
+      <input value="{{ $spp_pusat_khidmat -> kumpulan}}" name="kumpulan" type="text" class="">
+      <input value="{{ $spp_pusat_khidmat -> kod}}" name="kod" type="text" class="">
+    </td>
 <br>
 </tr>
 <tr style="text-align: center">

@@ -1,5 +1,7 @@
 
 @extends('bases')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <style>
 table {
   font-family: arial, sans-serif;
@@ -27,8 +29,10 @@ tr:nth-child(even) {
 
 <br>
 <table id="myTable"  style="text-align: center">
+  <button style="margin-bottom: 10px" class="btn btn-primary delete_all" data-url="{{ url('kod_daerah_DeleteAll') }}">HAPUS</button> <button class="btn btn-primary" onclick="window.print()">CETAK </button><br>
   <thead>
     <tr align="center">
+      <th></th>
       <th>Negeri</th>
       <th>KOD</th>
       <th>DAERAH</th>
@@ -44,6 +48,7 @@ tr:nth-child(even) {
           <option value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
         @endforeach
       </select>
+    <td></td>
     <td> <input name="" id="idNegeriinput" type="text" class=""></td>
     <td> <input name="kod" type="text" class=""></td>
     <td> <input name="nama" type="text" class=""></td>
@@ -53,10 +58,7 @@ tr:nth-child(even) {
 
   </tbody>
   <tbody id="daerahTable">
-
   </tbody>
-
- 
 
 </table>
 
@@ -86,17 +88,11 @@ $(document).ready(function() {
           $.each(data.iNeg, function(index,value) {
               $('#daerahTable').append(
                 `<tr>
-           
+                  <td><ul><input type="checkbox" class="sub_chk" data-id="${value.id}"></ul></td>
                 <td >${selected_negeri}</td>
                 <td >${value.kod}</td>
                 <td >${value.nama}</td>
                 <td> <a href="/kod_daerah/${value.id}/edit">Kemaskini</a><br>
-                  <form action="/kod_daerah/${value.id}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit"><span class="fas fa-bin"></span></button>
-                  </form>
-                </td>
                 </tr>`
                 );
           });
@@ -106,4 +102,109 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+  
+  
+        $('#master').on('click', function(e) {
+         if($(this).is(':checked',true))  
+         {
+            $(".sub_chk").prop('checked', true);  
+         } else {  
+            $(".sub_chk").prop('checked',false);  
+         }  
+        });
+  
+  
+        $('.delete_all').on('click', function(e) {
+  
+  
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });  
+  
+  
+            if(allVals.length <=0)  
+            {  
+                alert("Please select row.");  
+            }  else {  
+  
+  
+                var check = confirm("Are you sure you want to delete this row?");  
+                if(check == true){  
+  
+  
+                    var join_selected_values = allVals.join(","); 
+  
+  
+                    $.ajax({
+                        url: $(this).data('url'),
+                        type: 'DELETE',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: 'ids='+join_selected_values,
+                        success: function (data) {
+                            if (data['success']) {
+                                $(".sub_chk:checked").each(function() {  
+                                    $(this).parents("tr").remove();
+                                });
+                                alert(data['success']);
+                            } else if (data['error']) {
+                                alert(data['error']);
+                            } else {
+                                alert('Whoops Something went wrong!!');
+                            }
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                        }
+                    });
+  
+  
+                  $.each(allVals, function( index, value ) {
+                      $('table tr').filter("[data-row-id='" + value + "']").remove();
+                  });
+                }  
+            }  
+        });
+  
+  
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+            onConfirm: function (event, element) {
+                element.trigger('confirm');
+            }
+        });
+  
+  
+        $(document).on('confirm', function (e) {
+            var ele = e.target;
+            e.preventDefault();
+  
+  
+            $.ajax({
+                url: ele.href,
+                type: 'DELETE',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (data) {
+                    if (data['success']) {
+                        $("#" + data['tr']).slideUp("slow");
+                        alert(data['success']);
+                    } else if (data['error']) {
+                        alert(data['error']);
+                    } else {
+                        alert('Whoops Something went wrong!!');
+                    }
+                },
+                error: function (data) {
+                    alert(data.responseText);
+                }
+            });
+  
+  
+            return false;
+        });
+    });
+  </script>
 @endsection

@@ -159,7 +159,9 @@ class SppPusatKhidmatServisController extends Controller
      */
     public function destroy(spp_pusat_khidmat_servis $spp_pusat_khidmat_servis)
     {   
+        // dd($spp_pusat_khidmat_servis);
         $spp_pusat_khidmat_servis->delete();
+        // $spp_pusat_khidmat_servis = spp_pusat_khidmat_servis::where('id', $spp_pusat_khidmat_servis )->delete();
         return redirect('/spp_pusat_khidmat_servis')
         ->with('success', ' deleted successfully');
     }

@@ -38,11 +38,11 @@ tr:nth-child(even) {
     <td> <input value="{{ $template_perjanjian_main -> tpm_id }}" name="tpm_id" type="text" class=""></td>
     <td> <input value="{{ $template_perjanjian_main -> tpm_nama }}" name="tpm_nama" type="text" class=""></td>
     <td><button type="submit" value="submit">KEMASKINI</button>
-      <form action="/template_perjanjian_main/{{ $template_perjanjian_main -> id }}" method="POST">
-        @csrf
+      {{-- <form action="/template_perjanjian_main/{{ $template_perjanjian_main -> id }}" method="POST">
+        @csrf 
         @method('DELETE')
         <button type="submit"><span class="fas fa-bin"></span></button>
-        </form>
+        </form> --}}
     </td>
   </form>
   </tr>

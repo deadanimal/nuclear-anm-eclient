@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\template_perjanjian_detail;
 use Illuminate\Http\Request;
+use DB;
 
 class TemplatePerjanjianDetailController extends Controller
 {
@@ -68,7 +69,10 @@ class TemplatePerjanjianDetailController extends Controller
      */
     public function edit(template_perjanjian_detail $template_perjanjian_detail)
     {
-        //
+
+        return view('template_perjanjian_detail.edit',[
+            'template_perjanjian_detail'=>$template_perjanjian_detail,
+        ]);
     }
 
     /**
@@ -80,7 +84,13 @@ class TemplatePerjanjianDetailController extends Controller
      */
     public function update(Request $request, template_perjanjian_detail $template_perjanjian_detail)
     {
-        //
+        $template_perjanjian_detail->tpd_urutan = $request->tpd_urutan;
+        $template_perjanjian_detail->tpd_level = $request->tpd_level;
+        $template_perjanjian_detail->tpd_bil = $request->tpd_bil;
+        $template_perjanjian_detail->tpd_keterangan = $request->tpd_keterangan;
+
+        $template_perjanjian_detail->save();
+        return redirect('/template_perjanjian_main');
     }
 
     /**
@@ -92,5 +102,11 @@ class TemplatePerjanjianDetailController extends Controller
     public function destroy(template_perjanjian_detail $template_perjanjian_detail)
     {
         //
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("template_perjanjian_details")->whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Products Deleted successfully."]);
     }
 }

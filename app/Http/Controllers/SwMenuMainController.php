@@ -14,7 +14,11 @@ class SwMenuMainController extends Controller
      */
     public function index()
     {
-        //
+        $sw_menu_main = sw_menu_main::all();
+
+        return view('sw_menu_main.index',[
+            'sw_menu_main'=>$sw_menu_main,
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class SwMenuMainController extends Controller
      */
     public function create()
     {
-        //
+        return view('sw_menu_main.index');
     }
 
     /**
@@ -35,7 +39,13 @@ class SwMenuMainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd('masuk');
+        $sw_menu_main = new sw_menu_main();
+        $sw_menu_main->mm_kod = $request->mm_kod;
+        $sw_menu_main->mm_nama = $request->mm_nama;
+
+        $sw_menu_main->save();
+        return redirect('/sw_menu_main');
     }
 
     /**
@@ -57,7 +67,10 @@ class SwMenuMainController extends Controller
      */
     public function edit(sw_menu_main $sw_menu_main)
     {
-        //
+        // dd('masuk');
+        return view('sw_menu_main.edit',[
+            'sw_menu_main' => $sw_menu_main,
+        ]);
     }
 
     /**
@@ -69,7 +82,11 @@ class SwMenuMainController extends Controller
      */
     public function update(Request $request, sw_menu_main $sw_menu_main)
     {
-        //
+        $sw_menu_main->mm_kod = $request->mm_kod;
+        $sw_menu_main->mm_nama = $request->mm_nama;
+
+        $sw_menu_main->save();
+        return redirect('/sw_menu_main');
     }
 
     /**
@@ -80,6 +97,8 @@ class SwMenuMainController extends Controller
      */
     public function destroy(sw_menu_main $sw_menu_main)
     {
-        //
+        $sw_menu_main->delete();
+        return redirect('sw_menu_main')
+        ->with('success','deleted sucessfully');
     }
 }

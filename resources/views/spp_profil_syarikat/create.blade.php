@@ -66,7 +66,6 @@
     $(document).on('change','#kod_negeri_syarikat',function(){
       $("#id_daerah").empty();
       let selected = $(this).val();
-      alert(selected)
       $.ajax({
           method: "POST",
           url: "{{ url('/daerah') }}",

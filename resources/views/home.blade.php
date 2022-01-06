@@ -53,6 +53,57 @@
         userLinkRTL.setAttribute('disabled', true);
       }
     </script>
+    
+
+    <style>
+      body {font-family: Arial;}
+      
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        /* border: 1px solid #ccc; */
+        /* background-color: #f1f1f1; */
+      }
+      
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+      
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #C4C4C4;
+      }
+      
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #2CABE1;
+      }
+      
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      </style>
+    <style>
+    # , #button2 {
+      display:inline-block;
+      background-color: hsl(198, 75%, 53%);
+      border: #000000
+      color: #FFFFFF;
+      /* additional code */
+    }
+    </style>
     <style>
       .solidline {
        border-top: 3px solid #2CABE1;
@@ -163,68 +214,130 @@
       </div>
     </nav>
   </div>
-        <!-- Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+        <!-- Modal Login -->
+  <div class="modal fade;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true" style="widows: 10px;">
     <div class="modal-dialog modal-dialog-centered" role="document">
+      
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="" style="align-center">Login</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <div class="tab" style="max-width: 500px">
+          <button class="tablinks inline-block" id="defaultOpen" onclick="openCity(event, 'LogMasukKakitangan')">Kakitangan</button>
+          <button class="tablinks inline-block" id="" onclick="openCity(event, 'LogMasukPelanggan')">Pelanggan</button>
+          <button type="button" class="close topleft" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <div id="LogMasukKakitangan" class="tabcontent" id="">
+            <h3 style="color:white">Log Masuk Kakitangan</h3>
+            <div class="modal-header">
+              <h5 class="modal-title" id="" style="align-center">Log Masuk Kakitangan</h5>
+  
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+    
+                <!-- Email Address -->
+                <div>
+                  <label>Email</label><br>
+    
+                    <label for="email" :value="__('Email')" />
+    
+                    <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                </div>
+    
+                <!-- Password -->
+                <div class="mt-4">
+                  <label>Password</label><br>
+                    <label for="password" :value="__('Password')" />
+    
+                    <input id="password" class="block mt-1 w-full"
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="current-password" />
+                </div>
+    
+                <!-- Remember Me -->
+                <div style="" class="block mt-4">
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
+    
+                <div class="flex items-center justify-end mt-4">
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+                    <br>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary"> {{ __('Log in') }}</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div id="LogMasukPelanggan" class="tabcontent">
+            <h3 style="color:white">Log Masuk Pelanggan</h3>
+            <div class="modal-header">
+              <h5 class="modal-title" id="" style="align-center">Log Masuk Pelanggan</h5>
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="{{ route('login') }}">
+                @csrf
+    
+                <!-- Email Address -->
+                <div>
+                  <label>Email</label><br>
+    
+                    <label for="email" :value="__('Email')" />
+    
+                    <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                </div>
+    
+                <!-- Password -->
+                <div class="mt-4">
+                  <label>Password</label><br>
+                    <label for="password" :value="__('Password')" />
+    
+                    <input id="password" class="block mt-1 w-full"
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="current-password" />
+                </div>
+    
+                <!-- Remember Me -->
+                <div style="" class="block mt-4">
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
+    
+                <div class="flex items-center justify-end mt-4">
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+                    <br>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary"> {{ __('Log in') }}</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+    
+
+          </div>
         </div>
-        <div class="modal-body">
-          <form method="POST" action="{{ route('login') }}">
-            @csrf
 
-            <!-- Email Address -->
-            <div style="">
-              <label>Email</label><br>
-
-                <label for="email" :value="__('Email')" />
-
-                <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-              <label>Password</label><br>
-                <label for="password" :value="__('Password')" />
-
-                <input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div style="" class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-                <br>
-                <button class="ml-3">
-                    {{ __('Log in') }}
-                </button>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
       </div>
     </div>
   </div>
+ 
   <div class="row g-0">
     <div class="col-lg-8 pe-lg-2">
       <div class="card mb-3 mb-lg-0">
@@ -236,7 +349,7 @@
     <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
-    <div class="modal fade modal-fixed-right modal-theme overflow-hidden" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="settings-modal-label" aria-hidden="true">
+    {{-- <div class="modal fade modal-fixed-right modal-theme overflow-hidden" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="settings-modal-label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-vertical" role="document">
         <div class="modal-content border-0 vh-100 scrollbar-overlay">
           <div class="modal-header modal-header-settings bg-shape">
@@ -321,6 +434,12 @@
                   <input class="btn-check" id="navbar-style-inverted" type="radio" name="navbarStyle" value="inverted" data-theme-control="navbarStyle" />
                   <label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-inverted"> <img class="img-fluid img-prototype" src="{{ asset('assets/img/generic/inverted.png') }}" alt="" /><span class="label-text"> Inverted</span></label>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> --}}
                   
     <!-- ===============================================-->
     <!--    JavaScripts-->
@@ -336,7 +455,33 @@
     <script src="{{ asset('https://polyfill.io/v3/polyfill.min.js?features=window.scroll') }}"></script>
     <script src="{{ asset('assets/vendors/list.js/list.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <!-- ===============================================-->
+    <!--    JavaScripts For Login Tab-->
+    <!-- ===============================================-->
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+      document.getElementById("defaultOpen").click();
 
+      </script>
+      
+    
+    
+    
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
   </body>
 
 </html>

@@ -7,7 +7,8 @@
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"> 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,8 +78,7 @@
           }
         </script>
                     <div class="d-flex align-items-center">
-                <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('Header.png') }}" alt="" width="1300" /><span class="font-sans-serif"></span>
-                </div>
+                <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('Header.png') }}" alt="" width="1300" /><span class="font-sans-serif"></span></div>
               </a>
             </div>
         <nav class="navbar navbar-light navbar-vertical navbar-expand-xl">
@@ -95,21 +95,37 @@
           </div> --}}
 
           
-          <div class="collapse navbar-collapse" id="navbarVerticalCollapse" style="background-color: white">
+          <div class="collapse navbar-collapse" id="navbarVerticalCollapse" style="top-padding:100px; background-color: white">
             <div class="navbar-vertical-content scrollbar">
               <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
                 <li class="">
-                  <ul><a href="/spp_profil_syarikat">spp_profil_syarikat</a></ul>
-                  <ul><a href="/spp_profil_harga_servis">spp_profil_harga_servis</a></ul>
-                  <ul><a href="/spp_pusat_khidmat">spp_pusat_khidmat</a></ul>
-                  <ul><a href="/spp_pusat_khidmat_servis">spp_pusat_khidmat_servis</a></ul>
-                  <ul><a href="/kod_bank">kod_bank</a></ul>
-                  <ul><a href="/kod_bayaran">kod_bayaran</a></ul>
-                  <ul><a href="/kod_negeri">kod_negeri</a></ul>
-                  <ul><a href="/kod_daerah">kod_daerah</a></ul>
-                  <ul><a href="/template_perjanjian_main">template_perjanjian_main</a></ul>
-                  <ul><a href="/kod_kategori_servis">kod_kategori_servis</a></ul>
-                  <ul><a href="/spp_proses_template_sijil">proses_template_sijil</a></ul>
+                  <ul><a>KOD</a></ul>
+                  <ul><a href="/">XKod Notifikasi </a></ul>
+                  <ul><a href="/spp_pusat_khidmat_servis">servis pusat khidmat</a></ul>
+                  <ul><a href="/spp_profil_harga_servis">profil harga</a></ul>
+                  <ul><a href="/psm_biodata">Profil Kakitangan</a></ul>
+                  <ul><a href="/spp_profil_syarikat">profil syarikat</a></ul>
+                  <ul><a href="/spp_pelanggan_syarikat">Pelanggan</a></ul>
+                  <ul><a href="/">XPelanggan Aktif</a></ul>
+                  <ul><a href="/">XPembekal</a></ul>
+                  <ul><a href="/kod_bank">kod bank</a></ul>
+                  <ul><a href="/kod_bayaran">kod bayaran</a></ul>
+                  <ul><a href="/spp_pusat_khidmat">kod pusat khidmat</a></ul>
+                  <ul><a href="/kod_sijil_iso">kod Iso</a></ul>
+                  <ul><a href="/kod_status_syarikat">kod Status Syarikat</a></ul>
+                  <ul><a href="/kod_negeri">kod Negeri</a></ul>
+                  <ul><a href="/kod_daerah">kod Daerah</a></ul>
+                  <ul><a href="/template_perjanjian_main">Kod Perjanjian</a></ul>
+                  <ul><a href="/sw_menu_detail">Kod Proses</a></ul>
+                  <ul><a href="/sw_menu_detail">Kod Proses Config</a></ul>
+                  {{-- <ul><a href="/kod_kategori_servis">kod_kategori_servis</a></ul> --}}
+                  <ul><a href="/spp_proses_template_sijil">Kod Template Sijil</a></ul>
+
+
+<br>
+                  <ul><a>SETUP</a></ul>
+                  <ul><a href="/sw_menu_main">Menu Main</a></ul>
+                  <ul><a href="/sw_menu_detail">Pautan Menu </a></ul>
                 </li>
 
               </ul>

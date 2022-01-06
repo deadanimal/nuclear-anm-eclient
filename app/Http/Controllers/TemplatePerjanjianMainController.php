@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\template_perjanjian_detail;
 use App\Models\template_perjanjian_main;
 use Illuminate\Http\Request;
+use DB;
 
 class TemplatePerjanjianMainController extends Controller
 {
@@ -111,5 +112,11 @@ class TemplatePerjanjianMainController extends Controller
         $template_perjanjian_main->delete();
         return redirect('/template_perjanjian_main')
         ->with('success', 'deleted successfully');
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("template_perjanjian_mains")->whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Products Deleted successfully."]);
     }
 }

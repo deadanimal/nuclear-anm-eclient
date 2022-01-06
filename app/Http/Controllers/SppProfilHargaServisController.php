@@ -85,10 +85,11 @@ class SppProfilHargaServisController extends Controller
      * @param  \App\Models\spp_profil_harga_servis  $spp_profil_harga_servis
      * @return \Illuminate\Http\Response
      */
-    public function edit( $spp_profil_harga_servis)
+    public function edit(spp_profil_harga_servis $spp_profil_harga_servis)
     {
+        // dd('masuk');
         // $spp_profil_harga_servis = spp_profil_harga_servis::where('id', $spp_profil_harga_servis)->first();
-        // dd($spp_profil_harga_servis);
+        dd($spp_profil_harga_servis);
         // $spp_profil_harga_servis = spp_profil_harga_servis::all();
 
         return view('spp_profil_harga_servis.edit',[

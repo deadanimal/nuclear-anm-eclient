@@ -5,15 +5,18 @@
 </style>
 @section('content')   
 
-<form action="carian_syarikat" method="POST">
+<form action="carian_pelanggan" method="POST">
   @csrf
-  <label for="nama">Nama Syarikat/No Syarikat</label>
+<label for="nama">NAMA PELANGGAN</label>
 <input name="nama" id="myInput" type="text" placeholder="Search..">
+<br>
+<label for="noAkaun">NO PELANGGAN</label>
+<input name="noAkaun" id="myInput" type="text" placeholder="Search..">
 
 <br>
-<label for="idKategoriSyarikat">Kategori Syarikat </label>
+<label for="idStatusSyarikat">STATUS PELANGGAN</label>
 
-<select name="idKategoriSyarikat" id="kod_negeri_syarikat">
+<select name="idStatusSyarikat" id="kod_negeri_syarikat">
   <option value="">Sila pilih</option>
 @foreach ($spp_profil_syarikat1 as $kod)
   <option value="{{ $kod -> id }}">{{ $kod -> nama }}</option>
@@ -21,7 +24,7 @@
 </select>
 <button type="submit" value="submit">Search</button>
 </form>
-<a href="/spp_profil_syarikat/create">TAMBAH SYARIKAT</a>
+<a href="/spp_pelanggan_syarikat/create">TAMBAH PELANGGAN</a>
 
 
 {{-- 

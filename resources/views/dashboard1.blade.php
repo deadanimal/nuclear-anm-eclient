@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
   <head>
@@ -61,6 +61,9 @@
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
+      <div>
+        <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('Header.png') }}" alt="" width="1300" /><span class="font-sans-serif"></span></div>
+      </div>
       <div class="container" data-layout="container">
         <script>
           var isFluid = JSON.parse(localStorage.getItem('isFluid'));
@@ -2553,4 +2556,4 @@
 
   </body>
 
-</html> --}}
+</html>
