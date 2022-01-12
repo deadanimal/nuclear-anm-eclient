@@ -57,9 +57,18 @@ class PesananController extends Controller
     }
     
     public function cetakSebutHarga($id){
-        $sebutharga = SppQuotation::with('quotationPelanggan.pelanggan','quotationKumpulan','quotationDetail','quotationDetail.profilHargaServis')->where('id',$id)->get()->first();
-//        dd($sebutharga->quotationDetail);
+        $sebutharga = SppQuotation::with('quotationPelanggan.pelanggan','quotationKumpulan.kumpulanDetail','quotationDetail','quotationDetail.profilHargaServis')->where('id',$id)->get()->first();
         return view('pesanan.cetak_sebutHarga',['sebutharga'=>$sebutharga]);
+    }
+    
+    public function jana_pesanan_maklumat_pesanan(){
+        $sebutharga = [];
+        return view('pesanan.jana_pesanan.maklumat_pesanan',['sebutharga'=>$sebutharga]);
+    }
+    
+    public function simpanMaklumatPesanan(){
+        $sebutharga = [];
+        return view('pesanan.jana_pesanan.pesanan_terperinci',['sebutharga'=>$sebutharga]);
     }
 
     /**

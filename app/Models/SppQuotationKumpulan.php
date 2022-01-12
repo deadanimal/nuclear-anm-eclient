@@ -14,6 +14,6 @@ class SppQuotationKumpulan extends Model
     protected $fillable = ['id'];
     
     public function kumpulanDetail(){
-        return $this->belongsTo('App\Models\SppPusatKhidmat', 'idPKhidmat', 'id');
+        return $this->hasOne('App\Models\SppPusatKhidmat', 'id', 'idPKhidmat');
     }
 }

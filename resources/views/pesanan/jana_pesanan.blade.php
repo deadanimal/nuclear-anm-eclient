@@ -51,7 +51,7 @@
 
             $.ajax({
                     method: "POST",
-                    url: "cari_sebutharga",
+                    url: "{{ url('cari_sebutharga') }}",
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "no_sebutharga": no_sebutharga
@@ -62,7 +62,7 @@
                     var counter = 1;
                     $('#table_pesanan').show();
                     $.each(data.sebutharga, function(index, value) {
-                        $('#table_pesanan_body').append('<tr><td>'+counter+'</td><td><a href="#">'+value.noQuo+'</a></td><td><a href="{{ url('cetakSebutHarga') }}/'+value.id+'" target="blank">'+value.noQuo+'</a></td></tr>');
+                        $('#table_pesanan_body').append('<tr><td>'+counter+'</td><td><a href="{{ url('jana_pesanan/maklumat_pesanan') }}">'+value.noQuo+'</a></td><td><a href="{{ url('cetakSebutHarga') }}/'+value.id+'" target="blank">'+value.noQuo+'</a></td></tr>');
                         counter++;
                     });
                 });

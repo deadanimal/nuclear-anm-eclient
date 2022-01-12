@@ -70,6 +70,8 @@ Route::get('/senarai_pesanan_lulus', 'App\Http\Controllers\PesananController@ind
 Route::get('/jana_pesanan', 'App\Http\Controllers\PesananController@jana_pesanan');
 Route::get('/cari_sebutharga', 'App\Http\Controllers\PesananController@cari_sebutharga');
 Route::get('/cetakSebutHarga/{id}', 'App\Http\Controllers\PesananController@cetakSebutHarga');
+Route::get('/jana_pesanan/maklumat_pesanan', 'App\Http\Controllers\PesananController@jana_pesanan_maklumat_pesanan');
+Route::get('/simpanMaklumatPesanan', 'App\Http\Controllers\PesananController@simpanMaklumatPesanan');
 
 
 
